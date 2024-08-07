@@ -24,9 +24,16 @@ public class LoginServlet extends HttpServlet {
 
         try{
 
+            String username = request.getParameter("userid");
+            String password = request.getParameter("passcode");
+
+            JSONObject reqObj = new JSONObject();
+            reqObj.put("username",username);
+            reqObj.put("password",password);
             HttpResponse<String> loginResponse = Unirest.post("http://localhost:8763/login")
                     .header("Content-Type", "application/json")
-                    .body("{\"username\":\"test\",\"password\":\"test\"}")
+                    //.body("{\"username\":\"test\",\"password\":\"test\"}")
+                    .body(reqObj.toString())
                     .asString();
 
             JSONObject respJson = new JSONObject(loginResponse.getBody());
