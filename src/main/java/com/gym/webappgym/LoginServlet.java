@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Do some processing
 
         // Get the RequestDispatcher for the target resource
@@ -54,6 +54,6 @@ public class LoginServlet extends HttpServlet {
 
 
         // Include the output of the includedPage.jsp in the response
-        dispatcher.include(request, response);
+        dispatcher.forward(request, response);
     }
 }

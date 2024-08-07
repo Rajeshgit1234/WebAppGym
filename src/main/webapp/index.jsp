@@ -52,6 +52,7 @@
 
 <body>
 <!-- Content -->
+<jsp:include page="loader.jsp"/>
 
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
@@ -181,7 +182,7 @@
     >Upgrade to Pro</a
     >
 </div>--%>
-<form id="loginform" style="display: none">
+<form id="loginform"  method="post" style="display: none">
 
     <input type = "text"  style="display: none" name = "userid" id = "userid">
     <input type = "text"  style="display: none" name = "passcode" id = "passcode">
