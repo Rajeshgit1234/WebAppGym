@@ -10,11 +10,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/home")
 
 public class LoginServlet extends HttpServlet {
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException  {
+
+        try{
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
+            dispatcher.forward(request, response);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Do some processing
@@ -39,9 +54,11 @@ public class LoginServlet extends HttpServlet {
             JSONObject respJson = new JSONObject(loginResponse.getBody());
             if(respJson.getBoolean("status")){
 
+                HttpSession session = request.getSession();
                 JSONObject gymOwnerJson = respJson.getJSONObject("gymowner");
                 System.out.println("gymOwnerJson"+gymOwnerJson);
                 request.setAttribute("name", gymOwnerJson.getString("name"));
+                session.setAttribute("userid",gymOwnerJson.getInt("userid"));
 
             }else {
 
