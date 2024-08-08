@@ -16,18 +16,33 @@
     <title>Vortex - Add Expenses</title>
 
     <jsp:include page="scriptsandcss.jsp"/>
+    <script src="/WebAppGym/gym/js/addExpenses.js"></script>
 
 </head>
 <script>
+
+
+
     window.onload = function() {
 
     document.getElementById('expDate').valueAsDate = new Date();
+    var expenseList = <%=session.getAttribute("expenseList") %>
+        var expenseType = $('#expenseType');
+
+        $.each(expenseList, function( index, value ) {
+
+            expenseType.append(
+                $('<option></option>').val(value.expId).html(value.expItem)
+            );
+        })
 
     };
 
 
+
 </script>
 <body>
+<jsp:include page="sessioncheck.jsp"/>
 <jsp:include page="loader.jsp"/>
 
 <!-- Layout wrapper -->
@@ -64,7 +79,7 @@
 
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <div>
                                         <div class="mb-3">
                                             <label class="form-label" for="expDate">Date</label>
                                             <div class="input-group input-group-merge">
@@ -81,73 +96,56 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="basic-icon-default-company">Company</label>
+                                            <label class="form-label" for="expenseType">Expense </label>
                                             <div class="input-group input-group-merge">
                             <span id="basic-icon-default-company2" class="input-group-text"
-                            ><i class="bx bx-buildings"></i
+                            ><i class="bx bx-purchase-tag"></i
                             ></span>
-                                                <input
+                                                <%--<input
                                                         type="text"
                                                         id="basic-icon-default-company"
                                                         class="form-control"
                                                         placeholder="ACME Inc."
                                                         aria-label="ACME Inc."
-                                                        aria-describedby="basic-icon-default-company2" />
+                                                        aria-describedby="basic-icon-default-company2" />--%>
+                                                <select id="expenseType" class="select2 form-select">
+                                                    <option value="">Select</option>
+
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="basic-icon-default-email">Email</label>
+                                            <label class="form-label" for="expAmount">Amount</label>
                                             <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                <span class="input-group-text"><i class="bx bx-rupee"></i></span>
                                                 <input
                                                         type="text"
-                                                        id="basic-icon-default-email"
+                                                        id="expAmount"
                                                         class="form-control"
-                                                        placeholder="john.doe"
-                                                        aria-label="john.doe"
+                                                        placeholder="Amount"
+                                                        aria-label="Amount"
                                                         aria-describedby="basic-icon-default-email2" />
-                                                <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-                                            </div>
-                                            <div class="form-text">You can use letters, numbers & periods</div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-icon-default-phone">Phone No</label>
-                                            <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-phone2" class="input-group-text"
-                            ><i class="bx bx-phone"></i
-                            ></span>
-                                                <input
-                                                        type="text"
-                                                        id="basic-icon-default-phone"
-                                                        class="form-control phone-mask"
-                                                        placeholder="658 799 8941"
-                                                        aria-label="658 799 8941"
-                                                        aria-describedby="basic-icon-default-phone2" />
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-icon-default-message">Message</label>
-                                            <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-message2" class="input-group-text"
-                            ><i class="bx bx-comment"></i
-                            ></span>
-                                                <textarea
-                                                        id="basic-icon-default-message"
-                                                        class="form-control"
-                                                        placeholder="Hi, Do you have a moment to talk Joe?"
-                                                        aria-label="Hi, Do you have a moment to talk Joe?"
-                                                        aria-describedby="basic-icon-default-message2"></textarea>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Send</button>
-                                    </form>
+
+                                        <button id="addExpensesBtn"  class="btn btn-primary d-grid w-100" type="submit">Add </button>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+    <form  id="addExp" action="addExpense" method="post" style="display:none">
 
+        <input type = "text"  style="display: none" name = "expid" id = "expid">
+        <input type = "text"  style="display: none" name = "expname" id = "expname">
+        <input type = "text"  style="display: none" name = "expDate" id = "expDatef">
+        <input type = "text"  style="display: none" name = "expAmount" id = "expAmountf">
+
+
+    </form>
                 <!-- / Content -->
 
                 <!-- Footer -->
@@ -158,9 +156,7 @@
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>
-                            , made with ❤️ by
-                            <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">ThemeSelection</a>
-                        </div>
+                            </div>
                         <div class="d-none d-lg-inline-block">
                             <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
                             <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>

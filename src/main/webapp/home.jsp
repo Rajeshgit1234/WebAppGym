@@ -20,17 +20,9 @@
     <!-- Favicon -->
     <jsp:include page="scriptsandcss.jsp"/>
 </head>
-<%
-    System.out.println("session.getAttribute(\"userid\") "+session.getAttribute("userid"));
 
-        if (session.getAttribute("userid") == null) {
-            System.out.println("invalid session");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-
-        }
-
-%>
 <body>
+<jsp:include page="sessioncheck.jsp"/>
 <jsp:include page="loader.jsp"/>
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">

@@ -2,6 +2,7 @@ package com.gym.webappgym;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
@@ -56,8 +57,11 @@ public class LoginServlet extends HttpServlet {
 
                 HttpSession session = request.getSession();
                 JSONObject gymOwnerJson = respJson.getJSONObject("gymowner");
+                JSONArray expenseList = respJson.getJSONArray("expense");
                 System.out.println("gymOwnerJson"+gymOwnerJson);
+                System.out.println("expenseList"+expenseList);
                 request.setAttribute("name", gymOwnerJson.getString("name"));
+                session.setAttribute("expenseList", expenseList);
                 session.setAttribute("userid",gymOwnerJson.getInt("userid"));
 
             }else {

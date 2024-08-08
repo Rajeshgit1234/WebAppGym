@@ -5,7 +5,7 @@ window.onload = function() {
         var gympassword =  $('#gympassword').val();
         if(gympassword&& gymusername){
 
-            $("#myDiv").css("display", "block");
+            $("#loading").css("display", "block");
             $('#userid').val(gymusername);
             $('#passcode').val(gympassword);
 
@@ -18,4 +18,7 @@ window.onload = function() {
 
 
     };
+
+
+
 };
