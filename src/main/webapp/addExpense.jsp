@@ -5,7 +5,7 @@
         class="light-style layout-menu-fixed layout-compact"
         dir="ltr"
         data-theme="theme-default"
-        data-assets-path="/WebAppGym/assets/"
+        data-assets-path="/WebAppGym/assets/pro/"
         data-template="vertical-menu-template-free">
 <head>
     <meta charset="utf-8" />
@@ -15,39 +15,18 @@
 
     <title>Vortex - Add Expenses</title>
 
-    <meta name="description" content="" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/WebAppGym/assets/img/favicon/favicon.ico" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-            rel="stylesheet" />
-
-    <link rel="stylesheet" href="/WebAppGym/assets/vendor/fonts/boxicons.css" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="/WebAppGym/assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="/WebAppGym/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="/WebAppGym/assets/css/demo.css" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/WebAppGym/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="/WebAppGym/assets/vendor/js/helpers.js"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="/WebAppGym/assets/js/config.js"></script>
-    <script src="/WebAppGym/assets/js/config.js"></script>
+    <jsp:include page="scriptsandcss.jsp"/>
 
 </head>
+<script>
+    window.onload = function() {
 
+    document.getElementById('expDate').valueAsDate = new Date();
+
+    };
+
+
+</script>
 <body>
 <jsp:include page="loader.jsp"/>
 
@@ -81,23 +60,23 @@
                         <div class="col-xl">
                             <div class="card mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">Basic with Icons</h5>
-                                    <small class="text-muted float-end">Merged input group</small>
+                                    <h5 class="mb-0">Add expenses</h5>
+
                                 </div>
                                 <div class="card-body">
                                     <form>
                                         <div class="mb-3">
-                                            <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+                                            <label class="form-label" for="expDate">Date</label>
                                             <div class="input-group input-group-merge">
                             <span id="basic-icon-default-fullname2" class="input-group-text"
-                            ><i class="bx bx-user"></i
+                            ><i class="bx bx-calendar"></i
                             ></span>
                                                 <input
-                                                        type="text"
+                                                        type="date"
                                                         class="form-control"
-                                                        id="basic-icon-default-fullname"
-                                                        placeholder="John Doe"
-                                                        aria-label="John Doe"
+                                                        id="expDate"
+                                                        placeholder="Date"
+                                                        aria-label="Date"
                                                         aria-describedby="basic-icon-default-fullname2" />
                                             </div>
                                         </div>
@@ -167,6 +146,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <!-- / Content -->
 
                 <!-- Footer -->
@@ -224,20 +205,20 @@
 </div>
 
 <!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
+<!-- build:js assets/pro/vendor/js/core.js -->
 
-<script src="/WebAppGym/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="/WebAppGym/assets/vendor/libs/popper/popper.js"></script>
-<script src="/WebAppGym/assets/vendor/js/bootstrap.js"></script>
-<script src="/WebAppGym/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="/WebAppGym/assets/vendor/js/menu.js"></script>
+<script src="/WebAppGym/assets/pro/vendor/libs/jquery/jquery.js"></script>
+<script src="/WebAppGym/assets/pro/vendor/libs/popper/popper.js"></script>
+<script src="/WebAppGym/assets/pro/vendor/js/bootstrap.js"></script>
+<script src="/WebAppGym/assets/pro/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/WebAppGym/assets/pro/vendor/js/menu.js"></script>
 
 <!-- endbuild -->
 
 <!-- Vendors JS -->
 
 <!-- Main JS -->
-<script src="/WebAppGym/assets/js/main.js"></script>
+<script src="/WebAppGym/assets/pro/js/main.js"></script>
 
 <!-- Page JS -->
 

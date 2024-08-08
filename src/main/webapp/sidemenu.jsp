@@ -64,23 +64,21 @@
         <!-- Dashboards -->
         <li class="menu-item">
             <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
-                    target="_blank"
+                    href="home"
+                    target="_self"
                     class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home"></i>
-                <div data-i18n="Email">Email</div>
-                <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
+                <div data-i18n="Email">Home</div>
             </a>
         </li>
         <!-- Apps -->
         <li class="menu-item">
             <a
-                    href="addExpense.jsp"
+                    href="addExpense"
                     target="_self"
                     class="menu-link">
                 <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
                 <div data-i18n="Email">Add Expenses</div>
-                <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
             </a>
         </li>
 
