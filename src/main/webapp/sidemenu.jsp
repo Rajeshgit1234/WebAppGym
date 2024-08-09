@@ -78,7 +78,7 @@
                     target="_self"
                     class="menu-link">
                 <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
-                <div data-i18n="Email">Add Expenses</div>
+                <div data-i18n="Email">Expenses</div>
             </a>
         </li>
 

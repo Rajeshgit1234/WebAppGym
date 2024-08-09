@@ -129,18 +129,36 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!--form-->
+
+                        <div class="col-xl">
+                            <div class="card mb-4" style="background: none;box-shadow: none;">
+
+                                <div class="card-body">
+
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--form-->
                     </div>
                 </div>
 
-    <form  id="addExp" action="addExpense" method="post" style="display:none">
+                <form  id="addExp" action="addExpense" method="post" style="display:none">
 
-        <input type = "text"  style="display: none" name = "expid" id = "expid">
-        <input type = "text"  style="display: none" name = "expname" id = "expname">
-        <input type = "text"  style="display: none" name = "expDate" id = "expDatef">
-        <input type = "text"  style="display: none" name = "expAmount" id = "expAmountf">
+                    <input type = "text"  style="display: none" name = "expid" id = "expid">
+                    <input type = "text"  style="display: none" name = "expname" id = "expname">
+                    <input type = "text"  style="display: none" name = "expDate" id = "expDatef">
+                    <input type = "text"  style="display: none" name = "expAmount" id = "expAmountf">
 
 
-    </form>
+                </form>
                 <!-- / Content -->
 
                 <!-- Footer -->
