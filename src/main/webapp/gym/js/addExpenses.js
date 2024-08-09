@@ -1,32 +1,37 @@
-window.onload = function() {
+ window.onload = function() {
 
-    $( "#addExpensesBtn" ).on( "click", function() {
-        alert( "Handler for `click` called." );
-    } );
+     document.getElementById("expDate").valueAsDate = new Date();
+
+     var expenseType = $("#expenseType");
+
+     $.each(expenseList, function( index, value ) {
+
+         expenseType.append(
+             $("<option></option>").val(value.expId).html(value.expItem)
+         );
+     })
+     $( "#addExpensesBtn" ).on( "click", function() {
+
+            var expDate =  $('#expDate').val();
+            var expenseType =  $('#expenseType').val();
+            var expAmount =  $('#expAmount').val();
+            if(expDate && expenseType && expAmount){
+
+                $("#loading").css("display", "block");
+                $('#expid').val(expenseType);
+                $('#expname').val(expenseType);
+                $('#expDate').val(expDate);
+                $('#expAmount').val(expAmount);
+
+                $('#addExp').attr('action', "/WebAppGym/home").submit();
+            }else{
+
+                alert("Please enter details")
+            }
+        } );
 
 
-    var addExpensesBtn = document.getElementById('addExpensesBtn');
-    addExpensesBtn.onclick = function() {
-        var expDate =  $('#expDate').val();
-        var expenseType =  $('#expenseType').val();
-        var expAmount =  $('#expAmount').val();
-        if(expDate && expenseType && expAmount){
 
-            $("#loading").css("display", "block");
-            $('#expid').val(expenseType);
-            $('#expname').val(expenseType);
-            $('#expDate').val(expDate);
-            $('#expAmount').val(expAmount);
-
-            $('#addExp').attr('action', "/WebAppGym/home").submit();
-        }else{
-
-            alert("Please enter details")
-        }
-
-
-
-    };
 
 
 

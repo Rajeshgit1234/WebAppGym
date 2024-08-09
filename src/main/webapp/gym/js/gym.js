@@ -3,6 +3,9 @@ window.onload = function() {
     loginBtn.onclick = function() {
         var gymusername =  $('#gymusername').val();
         var gympassword =  $('#gympassword').val();
+        gymusername="test";
+        gympassword="test";
+
         if(gympassword&& gymusername){
 
             $("#loading").css("display", "block");

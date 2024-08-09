@@ -16,27 +16,22 @@
     <title>Vortex - Add Expenses</title>
 
     <jsp:include page="scriptsandcss.jsp"/>
-    <script src="/WebAppGym/gym/js/addExpenses.js"></script>
+    <script type="text/javascript" src="/WebAppGym/gym/js/addExpenses.js"></script>
 
 </head>
 <script>
 
-
-
-    window.onload = function() {
-
-    document.getElementById('expDate').valueAsDate = new Date();
     var expenseList = <%=session.getAttribute("expenseList") %>
-        var expenseType = $('#expenseType');
+    /*var expenseType = $('#expenseType');
 
-        $.each(expenseList, function( index, value ) {
+    $.each(expenseList, function( index, value ) {
 
-            expenseType.append(
-                $('<option></option>').val(value.expId).html(value.expItem)
-            );
-        })
+         expenseType.append(
+             $('<option></option>').val(value.expId).html(value.expItem)
+         );
+     })*/
 
-    };
+
 
 
 
