@@ -4,7 +4,7 @@
 
      var expenseType = $("#expenseType");
 
-     $.each(expenseList, function( index, value ) {
+     $.each(expenseMasterList, function( index, value ) {
 
          expenseType.append(
              $("<option></option>").val(value.expId).html(value.expItem)
