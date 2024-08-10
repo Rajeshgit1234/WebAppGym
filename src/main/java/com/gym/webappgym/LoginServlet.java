@@ -58,13 +58,12 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 JSONObject gymOwnerJson = respJson.getJSONObject("gymowner");
                 JSONArray expenseMasterList = respJson.getJSONArray("expenseMasterList");
-                JSONArray expenseListJson = respJson.getJSONArray("expenseListJson");
                 System.out.println("gymOwnerJson"+gymOwnerJson);
                 System.out.println("expenseList"+expenseMasterList);
                 request.setAttribute("name", gymOwnerJson.getString("name"));
                 session.setAttribute("expenseMasterList", expenseMasterList);
-                session.setAttribute("expenseListJson", expenseListJson);
                 session.setAttribute("userid",gymOwnerJson.getInt("userid"));
+                session.setAttribute("gymid",gymOwnerJson.getInt("gymid"));
 
             }else {
 
