@@ -26,6 +26,32 @@ $(document).ready(function(){
         $("#loading").css("display", "block");
 
     }
+    $.fn.showAlertSuccess =function (data){
+
+        $("#alertDiv").html(data)
+        $("#alertDiv").addClass('alert alert-success');
+        $("#alertDiv").css("display", "block");
+        setTimeout(
+            function()
+            {
+                $("#alertDiv").css("display", "none");
+            }, 5000);
+
+    }
+    $.fn.showAlertFail =function (data){
+
+        $("#alertDiv").html(response.statusDesc)
+        $("#alertDiv").addClass('alert alert-danger');
+
+        $("#alertDiv").css("display", "block");
+        setTimeout(
+            function()
+            {
+                $("#alertDiv").css("display", "none");
+            }, 5000);
+
+    }
+
     $.fn.closeLoader =function (){
 
         $("#loading").css("display", "none");
