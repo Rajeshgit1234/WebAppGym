@@ -23,11 +23,19 @@
 
          var url = baseUrl+"/loadExpenses"
 
-         $.fn.commonajaxCall(url,{ "gym_id": "1" });
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": "1" });
+         $.ajax(settings).done(function (response) {
+             console.log(response);
+             $.fn.closeLoader();
+
+             $.fn.loadExpenseData(jQuery.parseJSON(response));
+         });
 
 
      });
-     $.fn.commonajaxCall = function(url,data){
+
+
+    /* $.fn.commonajaxCall = function(url,data){
 
 
          $.fn.openLoader();
@@ -53,30 +61,25 @@
          $.fn.closeLoader();
 
 
-     }
+     }*/
 
 
-     $( "#addExpensesBtn" ).on( "click", function() {
-
-            var expDate =  $('#expDate').val();
-            var expenseType =  $('#expenseType').val();
-            var expAmount =  $('#expAmount').val();
-            if(expDate && expenseType && expAmount){
-
-                $("#loading").css("display", "block");
-                $('#expid').val(expenseType);
-                $('#expname').val(expenseType);
-                $('#expDate').val(expDate);
-                $('#expAmount').val(expAmount);
-
-                $('#addExp').attr('action', "/WebAppGym/home").submit();
-            }else{
-
-                alert("Please enter details")
-            }
-        } );
 
 
+     $("#expenseType").on('change', function (e) {
+         var optionSelected = $("#expenseType:selected", this);
+         var valueSelected = this.value;
+         if(valueSelected==3){
+
+             $("#expOtherDiv").css("display", "block");
+
+         }else{
+
+             $("#expOtherDiv").css("display", "none");
+             $("#expOtherDesc").val("")
+
+         }
+     });
 
 
      $.fn.loadExpenseData = function(expJson){
@@ -86,12 +89,8 @@
 
              $.each( expJson.expenseList, function( key, value ) {
 
-                 $('#exptable').append('<tr> <td><span class="badge bg-label-primary me-1">'+value.expense_item+'</span></td>')
-                 $('#exptable').append('<td>'+value.exp_amount+'</td>')
-                 $('#exptable').append(' <td>'+value.created_by+'</td>')
-                 $('#exptable').append(' <td>'+value.created_on+'</td>')
-                 $('#exptable').append('<td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td>')
-                 $('#exptable').append('</tr>')
+                 $('#exptable').append('<tr> <td><span class="badge bg-label-primary me-1">'+value.expense_item+'</span></td><td>'+value.exp_amount+'</td><td>'+value.created_by+'</td><td>'+value.created_on+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+
 
              });
          }else{
@@ -104,6 +103,46 @@
 
      }
 
+
+     $("#addExpensesBtn").click(function() {
+
+
+         var expDate =  $('#expDate').val();
+         var expenseType =  $('#expenseType').val();
+         var expOtherDesc =  $('#expOtherDesc').val();
+         var expAmount =  $('#expAmount').val();
+         if(expDate && expenseType && expAmount){
+
+             if(expenseType==3){
+
+                 if(expOtherDesc){
+
+                 }else{
+
+                     alert("Please enter description");
+                     return false;
+                 }
+             }
+
+             var optionSelected = $("#expenseType:selected", this);
+             var exp_id = this.index;
+             $.fn.openLoader();
+             var url = baseUrl+"/addExpense"
+             var settings = $.fn.commonajaxCall(url,{ "gym_id": gym_id,"user_id": user_id,"expDate":expDate,"exp_id":exp_id,"exp_remarks":expOtherDesc,"amount":expAmount});
+             $.ajax(settings).done(function (response) {
+                 console.log(response);
+                 $.fn.closeLoader();
+
+                 $.fn.loadExpenseData(jQuery.parseJSON(response));
+             });
+
+
+
+         }else{
+
+             alert("Please enter details")
+         }
+     });
 
 
 };

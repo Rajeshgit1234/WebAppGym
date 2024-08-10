@@ -10,10 +10,10 @@
 
     #loading {
         width: 100% !important;
-        display: none !important;
+        display: none ;
     }
     *.hidden {
-        display: none !important;
+        display: none ;
     }
 
     div.loading{

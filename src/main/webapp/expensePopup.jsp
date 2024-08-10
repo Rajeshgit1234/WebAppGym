@@ -1,3 +1,10 @@
+<style>
+    #expOtherDiv {
+
+        display: none ;
+    }
+
+</style>
 <div class="card mb-4">
 
 
@@ -68,6 +75,20 @@
                                             <option value="">Select</option>
 
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3" id="expOtherDiv">
+                                    <label class="form-label" for="expenseType">Description </label>
+                                    <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="bx bx-note"></i></span>
+
+                                        <input
+                                                type="text"
+                                                id="expOtherDesc"
+                                                class="form-control"
+                                                placeholder="Description"
+                                                aria-label="Description"
+                                                aria-describedby="basic-icon-default-email2" />
                                     </div>
                                 </div>
                                 <div class="mb-3">

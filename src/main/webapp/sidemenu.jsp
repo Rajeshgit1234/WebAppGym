@@ -1,12 +1,8 @@
 <script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            $.ajax({url: "demo_test.txt", success: function(result){
-                    $("#div1").html(result);
-                }});
-        });
-    });
 
+
+    var user_id = <%=session.getAttribute("userid")%>
+    var gym_id = <%=session.getAttribute("gymid")%>
 </script>
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
