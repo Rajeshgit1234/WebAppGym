@@ -50,6 +50,7 @@
 
 <!-- Main JS -->
 <script src="/WebAppGym/assets/js/main.js"></script>
+<script src="/WebAppGym/assets/js/moment.js"></script>
 
 <!-- Page JS -->
 <script src="/WebAppGym/assets/js/dashboards-analytics.js"></script>

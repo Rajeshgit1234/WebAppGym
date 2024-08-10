@@ -23,7 +23,7 @@
 
          var url = baseUrl+"/loadExpenses"
 
-         var settings = $.fn.commonajaxCall(url,{ "gym_id": "1" });
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": gym_id,"offset":"0" });
          $.ajax(settings).done(function (response) {
              console.log(response);
              $.fn.closeLoader();
@@ -88,8 +88,9 @@
          if(expJson.status){
 
              $.each( expJson.expenseList, function( key, value ) {
-
-                 $('#exptable').append('<tr> <td><span class="badge bg-label-primary me-1">'+value.expense_item+'</span></td><td>'+value.exp_amount+'</td><td>'+value.created_by+'</td><td>'+value.created_on+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                 //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
+                 var created_date = moment(value.created_on).format('DD-MM-YYYY');
+                 $('#exptable').append('<tr> <td><span class="badge bg-label-primary me-1">'+value.expense_item+'</span></td><td>'+value.exp_amount+'</td><td>'+value.created_by+'</td><td>'+created_date+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
 
              });
@@ -124,8 +125,8 @@
                  }
              }
 
-             var optionSelected = $("#expenseType:selected", this);
-             var exp_id = this.index;
+             var exp_id = $("#expenseType").val();
+
              $.fn.openLoader();
              var url = baseUrl+"/addExpense"
              var settings = $.fn.commonajaxCall(url,{ "gym_id": gym_id,"user_id": user_id,"expDate":expDate,"exp_id":exp_id,"exp_remarks":expOtherDesc,"amount":expAmount});
