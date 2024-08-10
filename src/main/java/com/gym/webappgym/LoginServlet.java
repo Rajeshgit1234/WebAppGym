@@ -24,6 +24,8 @@ public class LoginServlet extends HttpServlet {
         try{
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
+            loadData(request,response,dispatcher);
+
             dispatcher.forward(request, response);
 
         }catch (Exception e){
@@ -38,15 +40,25 @@ public class LoginServlet extends HttpServlet {
         // Get the RequestDispatcher for the target resource
         RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
 
+        loadData(request,response,dispatcher);
+
+
+        // Include the output of the includedPage.jsp in the response
+        dispatcher.forward(request, response);
+    }
+
+    public void loadData(HttpServletRequest request, HttpServletResponse response,RequestDispatcher dispatcher){
+
+
         try{
 
-            String username = request.getParameter("userid");
-            String password = request.getParameter("passcode");
+            String user_id = request.getParameter("user_id");
+            String gym_id = request.getParameter("gym_id");
 
             JSONObject reqObj = new JSONObject();
-            reqObj.put("username",username);
-            reqObj.put("password",password);
-            HttpResponse<String> loginResponse = Unirest.post("http://localhost:8763/login")
+            reqObj.put("gym_id",Integer.valueOf(user_id));
+            reqObj.put("user_id",Integer.valueOf(gym_id));
+            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/homeData")
                     .header("Content-Type", "application/json")
                     //.body("{\"username\":\"test\",\"password\":\"test\"}")
                     .body(reqObj.toString())
@@ -74,8 +86,5 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-
-        // Include the output of the includedPage.jsp in the response
-        dispatcher.forward(request, response);
     }
 }

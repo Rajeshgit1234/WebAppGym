@@ -19,6 +19,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/WebAppGym/assets/img/favicon/favicon.ico" />
+    <script src="/WebAppGym/assets/vendor/libs/jquery/jquery.js"></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,6 +47,8 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/WebAppGym/assets/js/config.js"></script>
+    <script type="text/javascript" src="/WebAppGym/gym/js/common.js"></script>
+
     <script type="text/javascript" src="/WebAppGym/gym/js/gym.js"></script>
 
 </head>
@@ -182,15 +185,14 @@
     >Upgrade to Pro</a
     >
 </div>--%>
-<form id="loginform"  method="post" style="display: none">
+<form id="loginform"  method="post" style="display: none" action="home.jsp">
 
-    <input type = "text"  style="display: none" name = "userid" id = "userid">
-    <input type = "text"  style="display: none" name = "passcode" id = "passcode">
+    <input type = "text"  style="display: none" name = "user_id" id = "user_id">
+    <input type = "text"  style="display: none" name = "gym_id" id = "gym_id">
 </form>
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 
-<script src="/WebAppGym/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="/WebAppGym/assets/vendor/libs/popper/popper.js"></script>
 <script src="/WebAppGym/assets/vendor/js/bootstrap.js"></script>
 <script src="/WebAppGym/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
