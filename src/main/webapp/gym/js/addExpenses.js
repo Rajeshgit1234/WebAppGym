@@ -23,7 +23,7 @@
 
          var url = baseUrl+"/loadExpenses"
 
-         var settings = $.fn.commonajaxCall(url,{ "gym_id": gym_id,"offset":"0" });
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" });
          $.ajax(settings).done(function (response) {
              console.log(response);
              $.fn.closeLoader();
@@ -134,7 +134,7 @@
 
              $.fn.openLoader();
              var url = baseUrl+"/addExpense"
-             var settings = $.fn.commonajaxCall(url,{ "gym_id": gym_id,"user_id": user_id,"expDate":expDate,"exp_id":exp_id,"exp_remarks":expOtherDesc,"amount":expAmount});
+             var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"user_id": sessionStorage.getItem("user_id"),"expDate":expDate,"exp_id":exp_id,"exp_remarks":expOtherDesc,"amount":expAmount});
              $.ajax(settings).done(function (resp) {
 
                  console.log(resp);

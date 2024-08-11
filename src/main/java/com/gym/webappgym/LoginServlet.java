@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/home")
+@WebServlet("/homescreen")
 
 public class LoginServlet extends HttpServlet {
 
@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
         try{
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-            loadData(request,response,dispatcher);
+            Common.loadHomeScreenData(request,response,dispatcher);
 
             dispatcher.forward(request, response);
 
@@ -40,14 +40,14 @@ public class LoginServlet extends HttpServlet {
         // Get the RequestDispatcher for the target resource
         RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
 
-        loadData(request,response,dispatcher);
+        Common.loadHomeScreenData(request,response,dispatcher);
 
 
         // Include the output of the includedPage.jsp in the response
         dispatcher.forward(request, response);
     }
 
-    public void loadData(HttpServletRequest request, HttpServletResponse response,RequestDispatcher dispatcher){
+    /*public void loadData(HttpServletRequest request, HttpServletResponse response,RequestDispatcher dispatcher){
 
 
         try{
@@ -73,6 +73,7 @@ public class LoginServlet extends HttpServlet {
                 System.out.println("gymOwnerJson"+gymOwnerJson);
                 System.out.println("expenseList"+expenseMasterList);
                 request.setAttribute("name", gymOwnerJson.getString("name"));
+                request.setAttribute("exp_total", respJson.getString("exp_total"));
                 session.setAttribute("expenseMasterList", expenseMasterList);
                 session.setAttribute("userid",gymOwnerJson.getInt("userid"));
                 session.setAttribute("gymid",gymOwnerJson.getInt("gymid"));
@@ -86,5 +87,5 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }

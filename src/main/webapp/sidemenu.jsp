@@ -1,8 +1,11 @@
 <script>
 
 
-    var user_id = <%=session.getAttribute("userid")%>
-    var gym_id = <%=session.getAttribute("gymid")%>
+    /*var user_id = <%=session.getAttribute("userid")%>
+    var gym_id = <%=session.getAttribute("gymid")%>*/
+
+
+
 </script>
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -71,7 +74,8 @@
         <!-- Dashboards -->
         <li class="menu-item">
             <a
-                    href="home"
+                    href="#"
+                    id="homeBtn"
                     target="_self"
                     class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home"></i>
@@ -91,3 +95,8 @@
 
     </ul>
 </aside>
+<form id="loginformSideMenu"  method="post" style="display: none" >
+
+    <input type = "text"  style="display: none" name = "user_id" id = "user_id">
+    <input type = "text"  style="display: none" name = "gym_id" id = "gym_id">
+</form>

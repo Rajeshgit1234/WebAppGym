@@ -22,9 +22,14 @@ window.onload = function() {
                 var response = jQuery.parseJSON(resp)
                 $.fn.closeLoader();
                 if(response.status){
+                    gym_id = response.gym_id;
+                    user_id = response.user_id;
+                    sessionStorage.setItem("gym_id", gym_id);
+                    sessionStorage.setItem("user_id", user_id);
 
-                    $('#user_id').val(response.user_id);
-                    $('#gym_id').val(response.gym_id);
+
+                    $('#user_id').val(user_id);
+                    $('#gym_id').val(gym_id);
                     $('#loginform').attr('action', "/WebAppGym/home").submit();
                     // $.fn.showAlertSuccess(response.statusDesc);
 

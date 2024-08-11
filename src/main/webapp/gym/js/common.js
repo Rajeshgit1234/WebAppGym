@@ -1,4 +1,6 @@
 var baseUrl ="http://localhost:8763";
+
+
 $(document).ready(function(){
 
 
@@ -57,4 +59,14 @@ $(document).ready(function(){
         $("#loading").css("display", "none");
 
     }
+
+
+    $("#homeBtn").click(function () {
+
+        $('#user_id').val(sessionStorage.getItem("user_id"));
+        $('#gym_id').val(sessionStorage.getItem("gym_id"));
+        $('#loginformSideMenu').attr('action', "/WebAppGym/home").submit();
+
+    });
+
 });
