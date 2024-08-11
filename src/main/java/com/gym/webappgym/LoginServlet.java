@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 
         try{
 
-            String user_id = request.getParameter("user_id");
+              String user_id = request.getParameter("user_id");
             String gym_id = request.getParameter("gym_id");
 
             JSONObject reqObj = new JSONObject();
