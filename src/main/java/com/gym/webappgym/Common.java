@@ -36,15 +36,15 @@ public class Common {
             if(respJson.getBoolean("status")){
 
 
-                JSONObject gymOwnerJson = respJson.getJSONObject("gymowner");
+                JSONObject gymuserJson = respJson.getJSONObject("gymuser");
                 JSONArray expenseMasterList = respJson.getJSONArray("expenseMasterList");
-                System.out.println("gymOwnerJson"+gymOwnerJson);
+                System.out.println("gymuser"+gymuserJson);
                 System.out.println("expenseList"+expenseMasterList);
-                request.setAttribute("name", gymOwnerJson.getString("name"));
+                request.setAttribute("name", gymuserJson.getString("name"));
                 request.setAttribute("exp_total", respJson.getString("exp_total"));
                 session.setAttribute("expenseMasterList", expenseMasterList);
-                session.setAttribute("userid",gymOwnerJson.getInt("userid"));
-                session.setAttribute("gymid",gymOwnerJson.getInt("gymid"));
+                session.setAttribute("userid",gymuserJson.getInt("userid"));
+                session.setAttribute("gymid",gymuserJson.getInt("gymid"));
 
             }else {
 
