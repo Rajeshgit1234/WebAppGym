@@ -92,6 +92,42 @@
                 <div data-i18n="Email">Expenses</div>
             </a>
         </li>
+         <li class="menu-item" >
+            <a
+                    href="profile"
+                    target="_self"
+                    class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Email">Profile</div>
+            </a>
+        </li>
+        <li class="menu-item" id="settingsMenu">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Settings</div>
+            </a>
+
+            <ul class="menu-sub" id="settingSub">
+                <li class="menu-item" >
+                    <a href="layouts-without-menu.html" class="menu-link">
+                        <div data-i18n="Without menu">Users</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="layouts-without-navbar.html" class="menu-link">
+                        <div data-i18n="Without navbar">Profiles</div>
+                    </a>
+                </li><li class="menu-item">
+                    <a href="layouts-without-navbar.html" class="menu-link">
+                        <div data-i18n="Without navbar">New expense item</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+
+
 
     </ul>
 </aside>

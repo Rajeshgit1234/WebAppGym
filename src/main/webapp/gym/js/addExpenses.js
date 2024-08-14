@@ -10,6 +10,12 @@
              $.fn.loadExpenseData(resp);
          }*/
 
+
+         $("#pagination-container").pagination({
+             items: 100,
+             itemsOnPage: 10,
+             cssStyle: 'light-theme'
+         });
          document.getElementById("expDate").valueAsDate = new Date();
 
          var expenseType = $("#expenseType");
@@ -89,6 +95,7 @@
         // $('#exptable').append('<thead><tr><th>Expense</th><th>Amount</th><th>Added by</th><th>Added On</th><th>Actions</th></tr></thead>')
        //  $('#exptable').append('<tbody class="table-border-bottom-0"></tbody>')
          $(".exClass").empty();
+
 
          if(expJson.status){
 

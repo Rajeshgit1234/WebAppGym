@@ -42,9 +42,11 @@ public class Common {
                 System.out.println("expenseList"+expenseMasterList);
                 request.setAttribute("name", gymuserJson.getString("name"));
                 request.setAttribute("exp_total", respJson.getString("exp_total"));
-                session.setAttribute("expenseMasterList", expenseMasterList);
-                session.setAttribute("userid",gymuserJson.getInt("userid"));
-                session.setAttribute("gymid",gymuserJson.getInt("gymid"));
+                HttpSession ses = request.getSession(true);
+
+                ses.setAttribute("expenseMasterList", expenseMasterList);
+                ses.setAttribute("userid",gymuserJson.getInt("userid"));
+                ses.setAttribute("gymid",gymuserJson.getInt("gymid"));
 
             }else {
 

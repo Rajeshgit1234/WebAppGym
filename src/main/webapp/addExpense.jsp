@@ -104,6 +104,8 @@
                                 </tbody>
 
                             </table>
+                            <div id="pagination-container"></div>
+
                         </div>
                     </div>
                 </div>

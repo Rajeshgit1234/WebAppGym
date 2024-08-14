@@ -67,6 +67,11 @@ $(document).ready(function(){
         $('#gym_id').val(sessionStorage.getItem("gym_id"));
         $('#loginformSideMenu').attr('action', "/WebAppGym/home").submit();
 
+    }); $("#settingsMenu").click(function () {
+
+        $("#settingSub").css("display", "block");
+
+
     });
 
 });
