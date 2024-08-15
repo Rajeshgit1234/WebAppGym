@@ -11,11 +11,7 @@
          }*/
 
 
-         $("#pagination-container").pagination({
-             items: 100,
-             itemsOnPage: 10,
-             cssStyle: 'light-theme'
-         });
+
          document.getElementById("expDate").valueAsDate = new Date();
 
          var expenseType = $("#expenseType");
@@ -107,7 +103,7 @@
 
              });
          }else{
-             alert(expJson.statusDesc)
+
          }
         /* $('#exptable').append('<tr><td>my data</td><td>more data</td></tr>');*/
 
@@ -186,6 +182,48 @@
              alert("Please enter details")
          }
      });
+
+     var offset =0;
+     $.fn.loadNextSet =function (){
+
+
+         $.fn.openLoader();
+         var url = baseUrl+"/loadExpenses";
+
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset+10) });
+         $.ajax(settings).done(function (response) {
+             console.log(response);
+             response = jQuery.parseJSON(response);
+             $.fn.closeLoader();
+             if(response.status && response.expenseList.length>0) {
+                 $.fn.loadExpenseData(response);
+                 offset = offset+10;
+             }
+         });
+
+     };
+     $.fn.loadPrevSet =function (){
+
+        if(offset!=0){
+
+            $.fn.openLoader();
+            var url = baseUrl+"/loadExpenses";
+
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset-10) });
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                response = jQuery.parseJSON(response);
+
+                $.fn.closeLoader();
+                if(response.status && response.expenseList.length>0) {
+                    $.fn.loadExpenseData((response));
+                    offset = offset-10;
+                }
+            });
+
+        }
+
+     };
 
 
 };

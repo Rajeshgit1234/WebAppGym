@@ -19,12 +19,39 @@
 
     <!-- Favicon -->
     <jsp:include page="scriptsandcss.jsp"/>
+
 </head>
 
 <body>
 <jsp:include page="sessioncheck.jsp"/>
 <jsp:include page="loader.jsp"/>
+<script>
 
+    var options = {
+        chart: {
+            height: 350,
+            type: 'bar',
+        },
+        dataLabels: {
+            enabled: false
+        },
+        series: [],
+        title: {
+            text: 'Ajax Example',
+        },
+        noData: {
+            text: 'Loading...'
+        }
+    }
+
+    var chart = new ApexCharts(
+        document.querySelector("#totalRevenueChart"),
+        options
+    );
+
+    chart.render();
+
+</script>
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
@@ -613,14 +640,7 @@
 </div>
 <!-- / Layout wrapper -->
 
-<div class="buy-now">
-    <a
-            href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/"
-            target="_blank"
-            class="btn btn-danger btn-buy-now"
-    >Upgrade to Pro</a
-    >
-</div>
+
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->

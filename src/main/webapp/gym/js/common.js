@@ -72,6 +72,18 @@ $(document).ready(function(){
         $("#settingSub").css("display", "block");
 
 
+    });;
+
+    $("#paginationNext").click(function () {
+
+        $.fn.loadNextSet();
+
+
+    });$("#paginationPrev").click(function () {
+
+        $.fn.loadPrevSet();
+
+
     });
 
 });
