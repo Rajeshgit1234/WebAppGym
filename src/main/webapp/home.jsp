@@ -25,6 +25,13 @@
 <body>
 <jsp:include page="sessioncheck.jsp"/>
 <jsp:include page="loader.jsp"/>
+<style>
+
+    .mb-2 {
+
+        font-size: medium !important;
+    }
+</style>
 <script>
 
     var options = {

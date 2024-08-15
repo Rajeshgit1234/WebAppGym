@@ -92,6 +92,15 @@
                 <div data-i18n="Email">Expenses</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a
+                    href="markpayment"
+                    target="_self"
+                    class="menu-link">
+                <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
+                <div data-i18n="Email">Mark payment</div>
+            </a>
+        </li>
          <li class="menu-item" >
             <a
                     href="profile"
