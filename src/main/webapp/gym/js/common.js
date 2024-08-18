@@ -23,11 +23,7 @@ $(document).ready(function(){
 
     }
 
-    $.fn.openLoader =function (){
 
-        $("#loading").css("display", "block");
-
-    }
     $.fn.showAlertSuccess =function (data){
 
         $("#alertDiv").html(data)
@@ -54,9 +50,20 @@ $(document).ready(function(){
 
     }
 
+    $.fn.openLoader =function (){
+
+        // $("#loading").css("display", "block");
+
+        $("#loading").modal('show');
+
+
+    }
     $.fn.closeLoader =function (){
 
-        $("#loading").css("display", "none");
+       // $("#loading").css("display", "none");
+        $("#loading").modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
 
     }
 

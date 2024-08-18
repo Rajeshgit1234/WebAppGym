@@ -13,19 +13,30 @@
 
 
          document.getElementById("expDate").valueAsDate = new Date();
+         var date = new Date();
+         var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+         var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+         document.getElementById("filterFromExpDate").valueAsDate = firstDay;
+         document.getElementById("filterToExpDate").valueAsDate = lastDay;
+
+
 
          var expenseType = $("#expenseType");
+         var filterexpenseType = $("#filterexpenseType");
 
          $.each(expenseMasterList, function( index, value ) {
 
              expenseType.append(
                  $("<option></option>").val(value.expId).html(value.expItem)
              );
+             filterexpenseType.append(
+                 $("<option></option>").val(value.expId).html(value.expItem)
+             );
          })
 
          var url = baseUrl+"/loadExpenses"
 
-         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" });
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"type":type,"from":from,"to":to});
          $.ajax(settings).done(function (response) {
              console.log(response);
              $.fn.closeLoader();
@@ -190,7 +201,7 @@
          $.fn.openLoader();
          var url = baseUrl+"/loadExpenses";
 
-         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset+10) });
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset+10),"type":type,"from":from,"to":to });
          $.ajax(settings).done(function (response) {
              console.log(response);
              response = jQuery.parseJSON(response);
@@ -209,7 +220,7 @@
             $.fn.openLoader();
             var url = baseUrl+"/loadExpenses";
 
-            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset-10) });
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset-10) ,"type":type,"from":from,"to":to});
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 response = jQuery.parseJSON(response);
@@ -224,6 +235,36 @@
         }
 
      };
+
+
+     $("#filterBtn").click(function() {
+
+
+         var filterFromExpDate =  $('#filterFromExpDate').val();
+         var filterToExpDate =  $('#filterToExpDate').val();
+         var filterexpenseType =  $('#filterexpenseType').val();
+
+         from = filterFromExpDate;
+         to = filterToExpDate;
+         type = filterexpenseType;
+
+         $("#filterModal").modal('hide');
+         $('body').removeClass('modal-open');
+         $('.modal-backdrop').remove();
+        // $(".modal-backdrop").css("display", "none");
+
+
+         var url = baseUrl+"/loadExpenses"
+
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"type":type,"from":from,"to":to});
+         $.ajax(settings).done(function (response) {
+             console.log(response);
+             $.fn.closeLoader();
+
+             $.fn.loadExpenseData(jQuery.parseJSON(response));
+         });
+
+     });
 
 
 };

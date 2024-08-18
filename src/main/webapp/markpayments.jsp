@@ -34,7 +34,7 @@
 <script>
 
     var profile = <%=session.getAttribute("customers") %>
-    alert(profile)
+
 
 
 
@@ -88,13 +88,13 @@
                             </div>
                         </div>
                         <div class="table-responsive text-nowrap">
-                            <table id="exptable" class="table">
+                            <table id="payTable" class="table">
                                 <thead>
                                 <tr>
-                                    <th>Expense</th>
+                                    <th>Customer</th>
                                     <th>Amount</th>
-                                    <th>Added by</th>
-                                    <th>Added On</th>
+                                    <th>Paid On </th>
+                                    <th>Added By</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>

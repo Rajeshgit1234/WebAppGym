@@ -7,7 +7,7 @@
 --%>
 <style>
 
-
+/*
     #loading {
         width: 100% !important;
         display: none ;
@@ -177,13 +177,32 @@
         -webkit-animation: uil-ring-anim 1s linear infinite;
         -o-animation: uil-ring-anim 1s linear infinite;
         animation: uil-ring-anim 1s linear infinite;
-    }
+    }*/
 </style>
 
 
-<div class="loading" id="loading">
+<%--<div class="loading" id="loading">
     <div class='uil-ring-css' style='transform:scale(0.79);'>
         <div></div>
     </div>
+</div>--%>
+
+<div class="modal fade" role="dialog" id="loading" >
+
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+
+
+            <div class="loadingImg" id="loadingImg">
+                <div class='uil-ring-css' style='transform:scale(0.79);'>
+                    <div></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
 </div>
 
