@@ -83,7 +83,7 @@
                                             type="button"
                                             class="btn btn-primary"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#exLargeModal"><span><i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New Expense</span></span></button>
+                                            data-bs-target="#payModel"><span><i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New </span></span></button>
                                 </div>
                             </div>
                         </div>

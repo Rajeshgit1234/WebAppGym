@@ -24,6 +24,15 @@ window.onload = function() {
         })
 
 
+        $.fn.loadPayData();
+
+
+
+    });
+
+
+    $.fn.loadPayData = function(){
+
         var url = baseUrl+"/loadCustomerPayments"
 
         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"customer":customer});
@@ -31,14 +40,13 @@ window.onload = function() {
             console.log(response);
             $.fn.closeLoader();
 
-            $.fn.loadPayData(jQuery.parseJSON(response));
+            $.fn.renderPayData(jQuery.parseJSON(response));
         });
 
 
 
-    });
-
-    $.fn.loadPayData = function(expJson){
+    }
+ $.fn.renderPayData = function(expJson){
 
         // var expJson = JSON.parse(data)
         // $('#exptable').remove();
@@ -73,6 +81,73 @@ window.onload = function() {
 
 
     }
+
+
+    $("#addPayBtn").click(function() {
+
+
+        var payDate =  $('#payDate').val();
+        var usersList =  $('#usersList').val();
+        var payDesc =  $('#payDesc').val();
+        var payAmount =  $('#payAmount').val();
+        var fromMonth =  $('#fromMonth').val();
+        var paySub =  $('#paySub').val();
+        var toMonth =  $('#toMonth').val();
+        if(payDate && usersList!=0 && paySub!=0 && payDesc && payAmount!=0 && fromMonth!=0 && toMonth!=0){
+
+
+
+            $.fn.openLoader();
+            var url = baseUrl+"/markCustomerPayments"
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"addedby": sessionStorage.getItem("user_id"),"customer":usersList,"amount":payAmount,"description":payDesc,"subscription":paySub,"fromMonth":fromMonth,"toMonth":toMonth});
+            $.ajax(settings).done(function (resp) {
+
+                console.log(resp);
+                var response = jQuery.parseJSON(resp)
+                $.fn.closeLoader();
+                $("#payModel").modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+                if(response.status){
+
+    alert(response.statusDesc)
+                    // $.fn.showAlertSuccess(response.statusDesc);
+                    /*$("#alertDiv").html(response.statusDesc)
+                    $("#alertDiv").addClass('alert alert-success');
+                    $("#alertDiv").css("display", "block");
+                    setTimeout(
+                        function()
+                        {
+                            $("#alertDiv").css("display", "none");
+                        }, 5000);*/
+
+                }else{
+                    alert(response.statusDesc)
+                    // $.fn.showAlertFail(response.statusDesc);
+                   /* $("#alertDiv").html(response.statusDesc)
+                    $("#alertDiv").addClass('alert alert-danger');
+
+                    $("#alertDiv").css("display", "block");
+                    setTimeout(
+                        function()
+                        {
+                            $("#alertDiv").css("display", "none");
+                        }, 5000);*/
+
+                }
+
+
+                $.fn.loadPayData();
+            });
+
+
+
+        }else{
+
+            alert("Please enter details")
+        }
+    });
 
 
 

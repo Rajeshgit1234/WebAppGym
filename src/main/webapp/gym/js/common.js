@@ -60,7 +60,7 @@ $(document).ready(function(){
     }
     $.fn.closeLoader =function (){
 
-       // $("#loading").css("display", "none");
+        $("#loading").css("display", "none");
         $("#loading").modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();

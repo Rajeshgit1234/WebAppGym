@@ -17,12 +17,12 @@
                 <!-- Large Modal -->
 
                 <!-- Extra Large Modal -->
-                <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" id="payModel" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel4">Add Expenses</h5>
+                                <h5 class="modal-title" id="exampleModalLabel4">Mark Payment</h5>
                                 <button
                                         type="button"
                                         class="btn-close"
@@ -55,7 +55,7 @@
                             </div>--%>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label class="form-label" for="expDate">Date</label>
+                                    <label class="form-label" for="payDate">Date</label>
                                     <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
                                             ><i class="bx bx-calendar"></i
@@ -80,14 +80,81 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="mb-3" id="expOtherDiv">
+                                <div class="mb-3">
+                                    <label class="form-label" for="usersList">Subscription </label>
+                                    <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="bx bx-purchase-tag"></i></span>
+
+                                        <select id="paySub" class="select2 form-select">
+                                            <option value="0">Select</option>
+                                            <option value="1">Monthly</option>
+                                            <option value="2">Yearly</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3" >
+                                    <label class="form-label" for="usersList">Payment collecting for month(s) </label>
+                                    <div class="input-group input-group-merge">
+
+                                        <div class="input-group input-group-merge">
+                                            <div class="demo-inline-spacing">
+                                                <div class="btn-group">
+                                                    <label class="form-label" for="toMonth" style="width: 40%;font-size: xx-small;">From :  </label>
+                                                    <select id="fromMonth" class="select2 form-select">
+                                                        <option value="0">Select</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+
+                                                    </select>
+                                                </div>
+
+                                                <div class="btn-group" style="margin-left: 40px !important;">
+                                                    <label class="form-label" for="toMonth" style="width: 40%;font-size: xx-small;">To :  </label>
+
+                                                    <select id="toMonth" class="select2 form-select" style="margin-left: 3px !important;>
+                                                        <option value="0">Select</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="mb-3" >
                                     <label class="form-label" for="usersList">Description </label>
                                     <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-company2" class="input-group-text" ><i class="bx bx-note"></i></span>
 
                                         <input
                                                 type="text"
-                                                id="expOtherDesc"
+                                                id="payDesc"
                                                 class="form-control"
                                                 placeholder="Description"
                                                 aria-label="Description"
@@ -95,12 +162,12 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="expAmount">Amount</label>
+                                    <label class="form-label" for="payAmount">Amount</label>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-rupee"></i></span>
                                         <input
                                                 type="text"
-                                                id="expAmount"
+                                                id="payAmount"
                                                 class="form-control"
                                                 placeholder="Amount"
                                                 aria-label="Amount"
@@ -112,7 +179,7 @@
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                     Close
                                 </button>
-                                <button id="addExpensesBtn" type="button" class="btn btn-primary">Save changes</button>
+                                <button id="addPayBtn" type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
