@@ -34,7 +34,7 @@
 <script>
 
     var profile = <%=session.getAttribute("customers") %>
-
+   var customer = 0;
 
 
 
@@ -69,7 +69,7 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Home/</span> Add Expenses</h4>
+                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Home/</span> Mark New Payment</h4>
 
 
                     <!-- Bootstrap modals -->
@@ -87,14 +87,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive text-nowrap">
+                        <div id="payTableDv" class="table-responsive text-nowrap">
                             <table id="payTable" class="table">
                                 <thead>
                                 <tr>
                                     <th>Customer</th>
                                     <th>Amount</th>
                                     <th>Paid On </th>
-                                    <th>Added By</th>
+                                    <th>Subscription</th>
+                                    <th>description</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
