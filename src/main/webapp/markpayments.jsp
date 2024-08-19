@@ -93,9 +93,10 @@
                                 <tr>
                                     <th>Customer</th>
                                     <th>Amount</th>
-                                    <th>Paid On </th>
+                                    <th>Month </th>
                                     <th>Subscription</th>
                                     <th>description</th>
+                                    <th>Paid On </th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>

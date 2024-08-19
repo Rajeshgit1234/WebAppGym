@@ -87,8 +87,7 @@
 
                                         <select id="paySub" class="select2 form-select">
                                             <option value="0">Select</option>
-                                            <option value="1">Monthly</option>
-                                            <option value="2">Yearly</option>
+                                            <option value="Monthly">Monthly</option>
 
                                         </select>
                                     </div>
@@ -100,9 +99,8 @@
                                         <div class="input-group input-group-merge">
                                             <div class="demo-inline-spacing">
                                                 <div class="btn-group">
-                                                    <label class="form-label" for="toMonth" style="width: 40%;font-size: xx-small;">From :  </label>
-                                                    <select id="fromMonth" class="select2 form-select">
-                                                        <option value="0">Select</option>
+                                                    <select id="fromMonth" class="select2 form-select" style="width: 100%;">
+                                                        <option value="0">From (Month)</option>
                                                         <option value="1">January</option>
                                                         <option value="2">February</option>
                                                         <option value="3">March</option>
@@ -117,13 +115,23 @@
                                                         <option value="12">December</option>
 
                                                     </select>
+                                                    <select id="fromYear" class="select2 form-select" style="width: 100%;">
+                                                        <option value="0">Year</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <option value="2027">2027</option>
+                                                        <option value="2028">2028</option>
+
+
+                                                    </select>
                                                 </div>
 
                                                 <div class="btn-group" style="margin-left: 40px !important;">
-                                                    <label class="form-label" for="toMonth" style="width: 40%;font-size: xx-small;">To :  </label>
 
-                                                    <select id="toMonth" class="select2 form-select" style="margin-left: 3px !important;>
-                                                        <option value="0">Select</option>
+                                                    <select id="toMonth" class="select2 form-select" style="margin-left: 3px !important;width: 100%;">
+
+                                                        <option value="0">To (Month)</option>
                                                         <option value="1">January</option>
                                                         <option value="2">February</option>
                                                         <option value="3">March</option>
@@ -136,6 +144,17 @@
                                                         <option value="10">October</option>
                                                         <option value="11">November</option>
                                                         <option value="12">December</option>
+                                                    </select>
+
+                                                    <select id="toYear" class="select2 form-select" style="width: 100%;">
+                                                        <option value="0">Year</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <option value="2027">2027</option>
+                                                        <option value="2028">2028</option>
+
+
                                                     </select>
                                                 </div>
 

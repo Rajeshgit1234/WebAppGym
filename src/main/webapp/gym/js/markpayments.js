@@ -63,7 +63,48 @@ window.onload = function() {
                 $.each( expJson.payList, function( key, value ) {
                     //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
                     var created_date = moment(value.createdon).format('DD-MM-YYYY');
-                    $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">'+value.name+'</span></td><td>'+value.amount+'</td><td>'+value.subscription+'</td><td>'+value.description+'</td><td>'+created_date+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                    var monthPay = "";
+                    switch (value.paymonth) {
+
+                        case 1:
+                            monthPay = "January "+(value.payyear);
+                            break;
+                        case 2:
+                            monthPay = "February "+(value.payyear);
+                            break;
+                        case 3:
+                            monthPay = "March "+(value.payyear);
+                            break;
+                        case 4:
+                            monthPay = "April "+(value.payyear);
+                            break;
+                        case 5:
+                            monthPay = "May "+(value.payyear);
+                            break;
+                        case 6:
+                            monthPay = "June "+(value.payyear);
+                            break;
+                        case 7:
+                            monthPay = "July "+(value.payyear);
+                            break;
+                        case 8:
+                            monthPay = "August "+(value.payyear);
+                            break;
+                        case 9:
+                            monthPay = "September "+(value.payyear);
+                            break;
+                        case 10:
+                            monthPay = "October "+(value.payyear);
+                            break;
+                        case 11:
+                            monthPay = "November "+(value.payyear);
+                            break;
+                        case 12:
+                            monthPay = "December "+(value.payyear);
+                            break;
+
+                    }
+                    $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">'+value.name+'</span></td><td>'+value.amount+'</td><td>'+monthPay+'</td><td>'+value.subscription+'</td><td>'+value.description+'</td><td>'+created_date+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
 
                 });
@@ -91,15 +132,44 @@ window.onload = function() {
         var payDesc =  $('#payDesc').val();
         var payAmount =  $('#payAmount').val();
         var fromMonth =  $('#fromMonth').val();
+        var fromYear =  $('#fromYear').val();
+        var toYear =  $('#toYear').val();
         var paySub =  $('#paySub').val();
         var toMonth =  $('#toMonth').val();
-        if(payDate && usersList!=0 && paySub!=0 && payDesc && payAmount!=0 && fromMonth!=0 && toMonth!=0){
+        var status = false;
+        if(payDate && usersList!=0 && paySub!=0 && payDesc && payAmount!=0 && fromMonth!=0 && toMonth!=0 && toYear!=0 && fromYear!=0){
 
 
+            if(fromYear==toYear){
+
+                if(fromMonth<toMonth){
+
+                    status = true;
+
+                }else{
+
+                    status = false;
+                    alert("Selected month is incorrect")
+                }
+            }else{
+
+                tatus = true;
+            }
+
+
+
+
+
+        }else{
+
+            alert("Please enter details")
+        }
+
+        if(status){
 
             $.fn.openLoader();
             var url = baseUrl+"/markCustomerPayments"
-            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"addedby": sessionStorage.getItem("user_id"),"customer":usersList,"amount":payAmount,"description":payDesc,"subscription":paySub,"fromMonth":fromMonth,"toMonth":toMonth});
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"addedby": sessionStorage.getItem("user_id"),"customer":usersList,"amount":payAmount,"description":payDesc,"subscription":paySub,"fromMonth":fromMonth,"toMonth":toMonth,"fromYear":fromYear,"toYear":toYear});
             $.ajax(settings).done(function (resp) {
 
                 console.log(resp);
@@ -111,7 +181,7 @@ window.onload = function() {
 
                 if(response.status){
 
-    alert(response.statusDesc)
+                    alert(response.statusDesc)
                     // $.fn.showAlertSuccess(response.statusDesc);
                     /*$("#alertDiv").html(response.statusDesc)
                     $("#alertDiv").addClass('alert alert-success');
@@ -125,15 +195,15 @@ window.onload = function() {
                 }else{
                     alert(response.statusDesc)
                     // $.fn.showAlertFail(response.statusDesc);
-                   /* $("#alertDiv").html(response.statusDesc)
-                    $("#alertDiv").addClass('alert alert-danger');
+                    /* $("#alertDiv").html(response.statusDesc)
+                     $("#alertDiv").addClass('alert alert-danger');
 
-                    $("#alertDiv").css("display", "block");
-                    setTimeout(
-                        function()
-                        {
-                            $("#alertDiv").css("display", "none");
-                        }, 5000);*/
+                     $("#alertDiv").css("display", "block");
+                     setTimeout(
+                         function()
+                         {
+                             $("#alertDiv").css("display", "none");
+                         }, 5000);*/
 
                 }
 
@@ -141,11 +211,6 @@ window.onload = function() {
                 $.fn.loadPayData();
             });
 
-
-
-        }else{
-
-            alert("Please enter details")
         }
     });
 
