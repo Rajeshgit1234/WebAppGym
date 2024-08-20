@@ -84,7 +84,7 @@
 
 
                         <div class="col-md mb-4 mb-md-2">
-                            <small class="text-light fw-medium">Basic Accordion</small>
+                            <small class="text-light fw-medium">User</small>
                             <div class="accordion mt-3" id="accordionExample">
                                 <div class="card accordion-item active">
                                     <h2 class="accordion-header" id="headingOne">
