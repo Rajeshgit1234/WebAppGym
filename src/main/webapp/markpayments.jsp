@@ -35,6 +35,8 @@
 
     var profile = <%=session.getAttribute("customers") %>
    var customer = 0;
+   var filteryear = 0;
+    var filterMonth = 0;
 
 
 
@@ -74,15 +76,24 @@
 
                     <!-- Bootstrap modals -->
                     <jsp:include page="paymentPopup.jsp"/>
+                    <jsp:include page="payFilterPopup.jsp"/>
                     <!--/ Bootstrap modals -->
                     <div class="card">
                         <div class="card-header flex-column flex-md-row pb-0">
                             <div class="dt-action-buttons text-end pt-6 pt-md-0" style="padding-bottom: 4%">
                                 <div class="dt-buttons btn-group flex-wrap">
+                                    <button type="button"
+                                            class="btn btn-outline-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#payFilterPopup"
+                                    >
+                                        <span class="tf-icons bx bx-filter me-1"></span>Filter
+                                    </button>
                                     <button  tabindex="0" aria-controls="DataTables_Table_0"
                                             type="button"
                                             class="btn btn-primary"
                                             data-bs-toggle="modal"
+                                             style="margin-left: 14px"
                                             data-bs-target="#payModel"><span><i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New </span></span></button>
                                 </div>
                             </div>

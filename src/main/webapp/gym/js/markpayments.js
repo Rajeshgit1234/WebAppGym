@@ -15,10 +15,23 @@ window.onload = function() {
         document.getElementById("payDate").valueAsDate = new Date();
 
         var usersList = $("#usersList");
+        var usersListFilter = $("#usersListFilter");
+
+
+        var dtToday = new Date();
+        filteryear= dtToday.getFullYear();
+        $('#filterYear').val(filteryear);
+        $('#fromYear').val(filteryear);
+        $('#toYear').val(filteryear);
+
+
+        $('#payDate').attr('max', $.fn.getMaxDate());
 
         $.each(profile, function( index, value ) {
 
             usersList.append(
+                $("<option></option>").val(value.id).html(value.name +" - "+ value.phone)
+            );usersListFilter.append(
                 $("<option></option>").val(value.id).html(value.name +" - "+ value.phone)
             );
         })
@@ -33,9 +46,9 @@ window.onload = function() {
 
     $.fn.loadPayData = function(){
 
-        var url = baseUrl+"/loadCustomerPayments"
+        var url = baseUrl+"/loadCustomerPaymentsFilter"
 
-        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"customer":customer});
+        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"year":filteryear,"month":filterMonth,"customer":customer});
         $.ajax(settings).done(function (response) {
             console.log(response);
             $.fn.closeLoader();
@@ -67,56 +80,57 @@ window.onload = function() {
                     switch (value.paymonth) {
 
                         case 1:
-                            monthPay = "January "+(value.payyear);
+                            monthPay = "January " + (value.payyear);
                             break;
                         case 2:
-                            monthPay = "February "+(value.payyear);
+                            monthPay = "February " + (value.payyear);
                             break;
                         case 3:
-                            monthPay = "March "+(value.payyear);
+                            monthPay = "March " + (value.payyear);
                             break;
                         case 4:
-                            monthPay = "April "+(value.payyear);
+                            monthPay = "April " + (value.payyear);
                             break;
                         case 5:
-                            monthPay = "May "+(value.payyear);
+                            monthPay = "May " + (value.payyear);
                             break;
                         case 6:
-                            monthPay = "June "+(value.payyear);
+                            monthPay = "June " + (value.payyear);
                             break;
                         case 7:
-                            monthPay = "July "+(value.payyear);
+                            monthPay = "July " + (value.payyear);
                             break;
                         case 8:
-                            monthPay = "August "+(value.payyear);
+                            monthPay = "August " + (value.payyear);
                             break;
                         case 9:
-                            monthPay = "September "+(value.payyear);
+                            monthPay = "September " + (value.payyear);
                             break;
                         case 10:
-                            monthPay = "October "+(value.payyear);
+                            monthPay = "October " + (value.payyear);
                             break;
                         case 11:
-                            monthPay = "November "+(value.payyear);
+                            monthPay = "November " + (value.payyear);
                             break;
                         case 12:
-                            monthPay = "December "+(value.payyear);
+                            monthPay = "December " + (value.payyear);
                             break;
 
                     }
-                    $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">'+value.name+'</span></td><td>'+value.amount+'</td><td>'+monthPay+'</td><td>'+value.subscription+'</td><td>'+value.description+'</td><td>'+created_date+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
+                   // $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">' + value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                    $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
                 });
-            }else{
+            } else {
                 $("#payTableDv").css("display", "block");
 
             }
 
-        }else{
+        } else {
 
         }
-        /* $('#exptable').append('<tr><td>my data</td><td>more data</td></tr>');*/
+     /* $('#exptable').append('<tr><td>my data</td><td>more data</td></tr>');*/
 
 
 
@@ -212,6 +226,32 @@ window.onload = function() {
             });
 
         }
+    });
+
+    $("#filterBtn").click(function() {
+
+
+        var usersListFilter =  $('#usersListFilter').val();
+        var filYear =  $('#filterYear').val();
+        var filMonth =  $('#filterMonth').val();
+
+        if(filYear!=0) {
+            filteryear = filYear;
+            filterMonth = filMonth;
+            customer = usersListFilter;
+
+            $("#payFilterPopup").modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            // $(".modal-backdrop").css("display", "none");
+
+
+            $.fn.loadPayData();
+
+        }else {
+            alert("year is mandatory");
+        }
+
     });
 
 

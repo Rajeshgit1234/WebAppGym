@@ -118,7 +118,7 @@
 
             <ul class="menu-sub" id="settingSub">
                 <li class="menu-item" >
-                    <a href="layouts-without-menu.html" class="menu-link">
+                    <a href="settings?type=user" class="menu-link">
                         <div data-i18n="Without menu">Users</div>
                     </a>
                 </li>
