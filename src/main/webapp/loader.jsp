@@ -190,13 +190,16 @@
 <div class="modal fade" role="dialog" id="loading" >
 
     <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="
+    box-shadow: none;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    margin: 40%;">
 
 
-            <div class="loadingImg" id="loadingImg">
-
-                    <span class="visually-hidden">Loading...</span>
-
+            <div class="spinner-border spinner-border-lg text-secondary" role="status" >
+                <span class="visually-hidden">Loading...</span>
             </div>
 
 

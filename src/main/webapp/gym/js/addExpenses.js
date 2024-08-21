@@ -10,7 +10,7 @@
              $.fn.loadExpenseData(resp);
          }*/
 
-
+        var editKey = -1;
 
          document.getElementById("expDate").valueAsDate = new Date();
          var date = new Date();
@@ -23,6 +23,7 @@
 
          var expenseType = $("#expenseType");
          var filterexpenseType = $("#filterexpenseType");
+         var expenseEditType = $("#expenseEditType");
 
          $.each(expenseMasterList, function( index, value ) {
 
@@ -30,6 +31,9 @@
                  $("<option></option>").val(value.expId).html(value.expItem)
              );
              filterexpenseType.append(
+                 $("<option></option>").val(value.expId).html(value.expItem)
+             );
+             expenseEditType.append(
                  $("<option></option>").val(value.expId).html(value.expItem)
              );
          })
@@ -106,10 +110,11 @@
 
          if(expJson.status){
 
+             listExp = expJson.expenseList;
              $.each( expJson.expenseList, function( key, value ) {
                  //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
                  var created_date = moment(value.created_on).format('DD-MM-YYYY');
-                 $('#exptable').append('<tr class="exClass"> <td><span class="badge bg-label-primary me-1">'+value.expense_item+'</span></td><td>'+value.exp_amount+'</td><td>'+value.created_by+'</td><td>'+created_date+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                 $('#exptable').append('<tr class="exClass"> <td><span class="badge bg-label-primary me-1">'+value.expense_item+'</span></td><td>'+value.exp_amount+'</td><td>'+value.created_by+'</td><td>'+created_date+'</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="editExp('+key+')"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);" onclick="delExp('+value.exp_id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
 
              });
@@ -267,4 +272,111 @@
      });
 
 
-};
+     $.fn.loadActionDiv =function (id){
+
+         editKey = -1;
+         var div = "editAction_"+id;
+
+         if(!$("#editAction_"+id).is(':visible'))
+         {
+
+
+             $(".dropdown-menu").css("display", "none");
+             $("#editAction_"+id).css("display", "block");
+         }else{
+             $("#editAction_"+id).css("display", "none");
+         }
+
+
+
+     };
+
+     $.fn.editExpenses =function (key){
+
+
+
+/*
+         $('#expEditDate').val(expDate);
+
+
+         var el = document.getElementById("expenseEditType");
+         for(var i=0; i<el.options.length; i++) {
+             if ( el.options[i].text == expId ) {
+                 el.selectedIndex = i;
+                 break;
+             }
+         }
+
+         var optionSelected = $("#expenseEditType:selected", this);
+         var valueSelected = this.value;
+         if(valueSelected==3){
+
+             $("#expOtherEditDiv").css("display", "block");
+
+         }else{
+
+             $("#expOtherEditDiv").css("display", "none");
+             $("#expOtherEditDesc").val("")
+
+         }
+
+         $('#expOtherEditDesc').val(expDesc);
+         $('#expEditAmount').val(amount);
+         $("#expenseEditPopup").modal("show");
+         $.fn.loadActionDiv(id);
+
+ */
+
+         editKey = key;
+         var expItem = (listExp.at(key));
+         $('#expEditDate').val(expItem.created_on);
+
+
+
+
+         $("#expenseEditType option").each(function() {
+             if($(this).text() == expItem.expense_item ) {
+                 $(this).attr('selected', 'selected');
+             }
+         });
+
+
+
+         if($("#expenseEditType").prop('selectedIndex')==3){
+
+             $("#expOtherEditDiv").css("display", "block");
+             $('#expOtherEditDesc').val(expItem.exp_remarks);
+         }else{
+
+             $("#expOtherEditDiv").css("display", "none");
+             $("#expOtherEditDesc").val("")
+
+         }
+
+
+         $('#expEditAmount').val(expItem.exp_amount);
+         $("#expenseEditPopup").modal("show");
+         $.fn.loadActionDiv(key);
+
+
+     };
+     $.fn.delExpenses =function (id){
+
+
+
+         if(confirm("Are you sure you want to delete ?")){
+             alert("delete")
+         }else{
+
+             $.fn.loadActionDiv(id);
+         }
+
+
+
+
+
+
+     };
+
+
+ };

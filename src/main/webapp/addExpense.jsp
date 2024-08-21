@@ -37,9 +37,20 @@
     var type = 0;
     var from =""
     var to = "";
+    var listExp="";
 
+    function  callEditAction (id){
 
+        $.fn.loadActionDiv(id);
+    }
 
+    function  editExp (key){
+        $.fn.editExpenses(key);
+    }
+
+    function  delExp (id){
+        $.fn.delExpenses(id);
+    }
 
 
 
@@ -77,6 +88,7 @@
                     <!-- Bootstrap modals -->
                     <jsp:include page="expensePopup.jsp"/>
                     <jsp:include page="expenseFilterPopup.jsp"/>
+                    <jsp:include page="expenseEditPopup.jsp"/>
                     <!--/ Bootstrap modals -->
                     <div class="card">
                         <div class="card-header flex-column flex-md-row pb-0">
@@ -116,6 +128,8 @@
 
                             </table>
                            <jsp:include page="pagination.jsp"/>
+
+
 
                         </div>
                     </div>
