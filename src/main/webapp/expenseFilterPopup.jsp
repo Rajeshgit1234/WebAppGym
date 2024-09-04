@@ -100,10 +100,18 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <%--<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                     Close
                                 </button>
-                                <button id="filterBtn" type="button" class="btn btn-primary">Save changes</button>
+                                <button id="filterBtn" type="button" class="btn btn-primary">Save changes</button>--%>
+
+                                    <div class="mt-3">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button id="clearfilterBtn" type="button" class="btn btn-outline-secondary">Clear </button>
+                                            <button id="filterBtn" type="button" class="btn btn-outline-secondary">Filter</button>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>

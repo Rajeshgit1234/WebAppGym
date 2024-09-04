@@ -270,6 +270,32 @@
          });
 
      });
+     $("#clearfilterBtn").click(function() {
+
+
+
+
+         from = "";
+         to = "";
+         type = 0;
+
+         $("#filterModal").modal('hide');
+         $('body').removeClass('modal-open');
+         $('.modal-backdrop').remove();
+        // $(".modal-backdrop").css("display", "none");
+
+
+         var url = baseUrl+"/loadExpenses"
+
+         var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"type":type,"from":from,"to":to});
+         $.ajax(settings).done(function (response) {
+             console.log(response);
+             $.fn.closeLoader();
+
+             $.fn.loadExpenseData(jQuery.parseJSON(response));
+         });
+
+     });
 
 
      $.fn.loadActionDiv =function (id){
@@ -294,52 +320,23 @@
      $.fn.editExpenses =function (key){
 
 
-
-/*
-         $('#expEditDate').val(expDate);
-
-
-         var el = document.getElementById("expenseEditType");
-         for(var i=0; i<el.options.length; i++) {
-             if ( el.options[i].text == expId ) {
-                 el.selectedIndex = i;
-                 break;
-             }
-         }
-
-         var optionSelected = $("#expenseEditType:selected", this);
-         var valueSelected = this.value;
-         if(valueSelected==3){
-
-             $("#expOtherEditDiv").css("display", "block");
-
-         }else{
-
-             $("#expOtherEditDiv").css("display", "none");
-             $("#expOtherEditDesc").val("")
-
-         }
-
-         $('#expOtherEditDesc').val(expDesc);
-         $('#expEditAmount').val(amount);
-         $("#expenseEditPopup").modal("show");
-         $.fn.loadActionDiv(id);
-
- */
-
          editKey = key;
          var expItem = (listExp.at(key));
-         $('#expEditDate').val(expItem.created_on);
 
-
-
+         const d = new Date(expItem.created_on);
+         //var month = date.getMonth();
+         var month = (d.getMonth() < 10 ? '0' : '') + d.getMonth()
+         // var de =   date.getDate();
+         var de = (d.getDate() < 10 ? '0' : '') + d.getDate()
+           var year =  d.getFullYear();
+           var crtd_on = year+"-"+month+"-"+de;
+         $('#expEditDate').val(crtd_on);
 
          $("#expenseEditType option").each(function() {
              if($(this).text() == expItem.expense_item ) {
                  $(this).attr('selected', 'selected');
              }
          });
-
 
 
          if($("#expenseEditType").prop('selectedIndex')==3){
@@ -360,12 +357,134 @@
 
 
      };
+
+
+     $("#editExpensesBtn").click(function() {
+
+
+         var expDate =  $('#expEditDate').val();
+         var expenseType =  $('#expenseEditType').val();
+         var expOtherDesc =  $('#expOtherEditDesc').val();
+         var expAmount =  $('#expEditAmount').val();
+
+         var expItem = (listExp.at(editKey));
+
+         if(expDate && expenseType && expAmount){
+
+             if(expenseType==3){
+
+                 if(expOtherDesc){
+
+                 }else{
+
+                     alert("Please enter description");
+                     return false;
+                 }
+             }
+
+             var exp_id = $("#expenseEditType").val();
+
+             $.fn.openLoader();
+             var url = baseUrl+"/EditExpense"
+             var settings = $.fn.commonajaxCall(url,{ "id": expItem.exp_id,"expDate":expDate,"exp_id":exp_id,"exp_remarks":expOtherDesc,"amount":expAmount});
+             $.ajax(settings).done(function (resp) {
+
+                 console.log(resp);
+                 var response = jQuery.parseJSON(resp)
+                 $.fn.closeLoader();
+                 if(response.status){
+
+
+                     // $.fn.showAlertSuccess(response.statusDesc);
+                     $("#alertDiv").html(response.statusDesc)
+                     $("#alertDiv").addClass('alert alert-success');
+                     $("#alertDiv").css("display", "block");
+                     setTimeout(
+                         function()
+                         {
+                             $("#alertDiv").css("display", "none");
+                         }, 5000);
+
+                 }else{
+
+                     // $.fn.showAlertFail(response.statusDesc);
+                     $("#alertDiv").html(response.statusDesc)
+                     $("#alertDiv").addClass('alert alert-danger');
+
+                     $("#alertDiv").css("display", "block");
+                     setTimeout(
+                         function()
+                         {
+                             $("#alertDiv").css("display", "none");
+                         }, 5000);
+
+                 }
+
+
+                 var url = baseUrl+"/loadExpenses"
+
+                 var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"type":type,"from":from,"to":to});
+                 $.ajax(settings).done(function (response) {
+                     console.log(response);
+                     $.fn.closeLoader();
+
+                     $.fn.loadExpenseData(jQuery.parseJSON(response));
+                 });
+             });
+
+
+
+         }else{
+
+             alert("Please enter details")
+         }
+
+
+
+     });
+
+     $("#expenseEditType").on('change', function (e) {
+         var optionSelected = $("#expenseEditType:selected", this);
+         var valueSelected = this.value;
+         if(valueSelected==3){
+
+             $("#expOtherEditDiv").css("display", "block");
+
+         }else{
+
+             $("#expOtherEditDiv").css("display", "none");
+             $("#expOtherEditDesc").val("")
+
+         }
+     });
+
+
      $.fn.delExpenses =function (id){
 
 
 
          if(confirm("Are you sure you want to delete ?")){
-             alert("delete")
+
+             var exp_id = id;
+
+             var url = baseUrl+"/delExpense"
+
+             var settings = $.fn.commonajaxCall(url,{ "exp_id": exp_id});
+             $.ajax(settings).done(function (response) {
+                 console.log(response);
+                 var url = baseUrl+"/loadExpenses"
+
+                 var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"type":type,"from":from,"to":to});
+                 $.ajax(settings).done(function (response) {
+                     console.log(response);
+                     $.fn.closeLoader();
+
+                     $.fn.loadExpenseData(jQuery.parseJSON(response));
+                 });
+             });
+
+
+
          }else{
 
              $.fn.loadActionDiv(id);
