@@ -136,13 +136,14 @@
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label for="lastName" class="form-label">User Name</label>
-                                                <input class="form-control" type="text" name="lastName" id="lastName" value="${username}" />
+                                                <input class="form-control" readonly type="text" name="lastName" id="lastName" value="${username}" />
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label for="organization" class="form-label">Gym Name</label>
                                                 <input
                                                         type="text"
                                                         class="form-control"
+                                                        readonly
                                                         id="organization"
                                                         name="organization"
                                                         value="${gym}"
@@ -164,6 +165,7 @@
                                                 <div class="input-group input-group-merge">
                                                     <input
                                                             type="text"
+                                                            readonly
                                                             id="phoneNumber"
                                                             name="phoneNumber"
                                                             class="form-control"
@@ -177,7 +179,7 @@
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label for="address" class="form-label">Profile created </label>
-                                                <input type="text" class="form-control" value="${created}" id="created" name="address" placeholder="Address" />
+                                                <input type="text"   readonly class="form-control" value="${created}" id="created" name="address" placeholder="Address" />
                                             </div>
 
 

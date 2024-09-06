@@ -30,9 +30,9 @@ window.onload = function() {
         $.each(profile, function( index, value ) {
 
             usersList.append(
-                $("<option></option>").val(value.id).html(value.name +" - "+ value.phone)
+                $("<option></option>").val(value.id).html(value.name +" ( "+ value.phone+" ) ")
             );usersListFilter.append(
-                $("<option></option>").val(value.id).html(value.name +" - "+ value.phone)
+                $("<option></option>").val(value.id).html(value.name +" ( "+ value.phone+" ) ")
             );
         })
 
@@ -119,7 +119,9 @@ window.onload = function() {
                     }
 
                    // $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">' + value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
-                    $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                    //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                    //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="editPay('+key+')"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.exp_id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                    $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
                 });
             } else {
@@ -156,7 +158,7 @@ window.onload = function() {
 
             if(fromYear==toYear){
 
-                if(fromMonth<toMonth){
+                if(fromMonth<toMonth || fromMonth==toMonth){
 
                     status = true;
 
@@ -254,6 +256,49 @@ window.onload = function() {
 
     });
 
+
+    $.fn.loadActionDiv =function (id){
+
+        editKey = -1;
+        var div = "editAction_"+id;
+
+        if(!$("#editAction_"+id).is(':visible'))
+        {
+
+
+            $(".dropdown-menu").css("display", "none");
+            $("#editAction_"+id).css("display", "block");
+        }else{
+            $("#editAction_"+id).css("display", "none");
+        }
+
+
+
+    };
+
+    $.fn.delPayAction =function (id){
+
+        if(confirm("Are you sure you want to delete ?")){
+
+            var pay_id = id;
+
+            var url = baseUrl+"/delPay"
+
+            var settings = $.fn.commonajaxCall(url,{ "pay_id": pay_id,"userid": sessionStorage.getItem("user_id")});
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                $.fn.loadPayData();
+            });
+
+
+
+        }else{
+
+            $.fn.loadActionDiv(id);
+        }
+
+
+    };
 
 
 };
