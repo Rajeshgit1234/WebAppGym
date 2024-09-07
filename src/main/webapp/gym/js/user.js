@@ -23,6 +23,7 @@ window.onload = function() {
                 if (value.name.toUpperCase() == "CUSTOMER") {
 
                     profile = value.id;
+                    profileOwner = value.id;
                 }
 
                 profileType.append(
@@ -71,11 +72,11 @@ window.onload = function() {
 
                 $("#userTableDv").css("display", "block");
                 $.each( userJson.profile, function( key, value ) {
-                    //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
-                    var created_date = moment(value.addedOn).format('DD-MM-YYYY');
+                    //2024-08-15 11:10:14.456078
+                    var created_date = moment(value.addedOn).format('YYYY-MM-DD');
 
 
-                     $('#usertable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.username + '</td><td>' + value.phone + '</td><td>' + value.addedby + ' </td><td>' + value.created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                     $('#usertable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.phone + '</td><td>' + value.address + '</td><td>' + value.addedby + ' </td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
                 });
             } else {
@@ -115,39 +116,69 @@ window.onload = function() {
         }
 
     });
+    $("#clearfilterBtn").click(function() {
+
+
+
+
+            profile = profileOwner;
+
+            $("#userFilterModal").modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+            $.fn.loadUserData();
+
+
+
+    });
     $("#addUserBtn").click(function() {
 
 
         var name =  $('#name').val();
         var profileType =  $('#profileType').val();
-        var username =  $('#username').val();
+       // var username =  $('#username').val();
         var address =  $('#address').val();
         var phone =  $('#phone').val();
         var email =  $('#email').val();
+        var username ="";
 
-        if(name && profileType!=0 && username && address && phone && email) {
-
-
-
-
-            $("#alertDiv").html("added successfully")
-            $("#alertDiv").addClass('alert alert-success');
-            $("#alertDiv").css("display", "block");
-            setTimeout(
-                function()
-                {
-                    $("#alertDiv").css("display", "none");
-                    $("#userAddModal").modal('hide');
-                    $('body').removeClass('modal-open');
-                    $('.modal-backdrop').remove();
-                }, 2000);
+        if(name && profileType!=0  && address && phone && email) {
 
 
+            var url = baseUrl+"/addNewGymUser"
 
-            // $(".modal-backdrop").css("display", "none");
+            var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"user":sessionStorage.getItem("user_id")});
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+
+                if(response.status) {
+                    $("#alertDiv").html(response.statusDesc)
+                    $("#alertDiv").addClass('alert alert-success');
+                    $("#alertDiv").css("display", "block");
+                    setTimeout(
+                        function () {
+                            $("#alertDiv").css("display", "none");
+                            $("#userAddModal").modal('hide');
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+                        }, 2000);
+
+                    $.fn.loadUserData();
+                }else{
+
+                    $("#alertDiv").html(response.statusDesc)
+                    $("#alertDiv").addClass('alert alert-success');
+                    $("#alertDiv").css("display", "block");
+                    setTimeout(
+                        function () {
+                            $("#alertDiv").css("display", "none");
+
+                        }, 2000);
+                }
+            });
 
 
-            $.fn.loadUserData();
 
         }else {
             alert("Please enter all details");
@@ -186,5 +217,26 @@ window.onload = function() {
         }
 
     });
+
+
+    $.fn.loadActionDiv =function (id){
+
+        editKey = -1;
+        var div = "editAction_"+id;
+
+        if(!$("#editAction_"+id).is(':visible'))
+        {
+
+
+            $(".dropdown-menu").css("display", "none");
+            $("#editAction_"+id).css("display", "block");
+        }else{
+            $("#editAction_"+id).css("display", "none");
+        }
+
+
+
+    };
+
 
 };

@@ -1,21 +1,21 @@
 window.onload = function() {
     var loginBtn = document.getElementById('loginBtn');
     loginBtn.onclick = function() {
-        var gymusername =  $('#gymusername').val();
+        var phone =  $('#phone').val();
         var gympassword =  $('#gympassword').val();
-        gymusername="test";
+        phone="919497437361";
         gympassword="test";
 
-        if(gympassword&& gymusername){
+        if(gympassword&& phone){
 
             $("#loading").css("display", "block");
             //$('#userid').val(gymusername);
             //$('#passcode').val(gympassword);
 
            // $('#loginform').attr('action', "/WebAppGym/home").submit();
-            var url = baseUrl+"/login"
+            var url = baseUrl+"/weblogin"
 
-            var settings = $.fn.commonajaxCall(url,{ "username": gymusername,"password": gympassword,});
+            var settings = $.fn.commonajaxCall(url,{ "phone": phone,"password": gympassword});
             $.ajax(settings).done(function (resp) {
 
                 console.log(resp);

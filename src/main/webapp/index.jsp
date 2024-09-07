@@ -124,13 +124,13 @@
 
                     <div id="formAuthentication" class="mb-3" action="index.html">
                         <div class="mb-3">
-                            <label for="gymusername" class="form-label">Username</label>
+                            <label for="phone" class="form-label">Phone Number</label>
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="gymusername"
+                                    id="phone"
                                     name="email-username"
-                                    placeholder="Enter your email or username"
+                                    placeholder="Enter your registered phone number"
                                     autofocus />
                         </div>
                         <div class="mb-3 form-password-toggle">

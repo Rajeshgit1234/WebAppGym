@@ -43,7 +43,13 @@
 
     var profileMasterList = <%=session.getAttribute("profileMasterList") %>
     var profile=0;
+    var profileOwner=0;
     var offset =0;
+
+    function  callEditAction (id){
+
+        $.fn.loadActionDiv(id);
+    }
 
 </script>
 <!-- Layout wrapper -->
@@ -99,10 +105,10 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Username</th>
                                     <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Added By</th>
-                                    <th>Added On</th>
+
                                     <th>Actions</th>
                                 </tr>
                                 </thead>

@@ -81,7 +81,7 @@
                 </div>
               </div>
 
-              <div class="mb-3">
+             <%-- <div class="mb-3">
                 <label class="form-label" for="username">Username</label>
                 <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -96,7 +96,8 @@
                           aria-describedby="basic-icon-default-fullname2" />
                   <button class="btn btn-outline-primary" type="button" id="usernameavailability">Check availability</button>
                 </div>
-              </div><div class="mb-3">
+              </div>--%>
+                <div class="mb-3">
                 <label class="form-label" for="address">Address</label>
                 <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
