@@ -2,13 +2,7 @@ window.onload = function() {
 
     $(document).ready(function(){
 
-        /*var url = baseUrl+"/loadExpenses"
 
-        var resp =  $.fn.ajaxCall(url,{ "gym_id": "1" });
-        if(resp){
-
-            $.fn.loadExpenseData(resp);
-        }*/
 
         var editKey = -1;
 
