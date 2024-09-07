@@ -38,6 +38,7 @@ public class Common {
 
                 JSONObject gymuserJson = respJson.getJSONObject("gymuser");
                 JSONArray expenseMasterList = respJson.getJSONArray("expenseMasterList");
+                JSONArray profileMasterList = respJson.getJSONArray("profileMasterList");
                 System.out.println("gymuser"+gymuserJson);
                 System.out.println("expenseList"+expenseMasterList);
                 request.setAttribute("name", gymuserJson.getString("name"));
@@ -45,6 +46,7 @@ public class Common {
                 HttpSession ses = request.getSession(true);
 
                 ses.setAttribute("expenseMasterList", expenseMasterList);
+                ses.setAttribute("profileMasterList", profileMasterList);
                 ses.setAttribute("userid",gymuserJson.getInt("userid"));
                 ses.setAttribute("gymid",gymuserJson.getInt("gymid"));
 

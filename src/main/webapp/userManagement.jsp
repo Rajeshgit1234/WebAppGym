@@ -1,14 +1,5 @@
-<%@ page import="org.json.JSONArray" %>
-<%@ page import="org.json.JSONObject" %><%--
-  Created by IntelliJ IDEA.
-  User: rajeshrajan
-  Date: 09/08/24
-  Time: 10:37 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html
         lang="en"
         class="light-style layout-menu-fixed layout-compact"
@@ -22,50 +13,45 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Vortex - Expenses</title>
+    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
     <jsp:include page="scriptsandcss.jsp"/>
-    <script type="text/javascript" src="/WebAppGym/gym/js/addExpenses.js"></script>
+    <script type="text/javascript" src="/WebAppGym/gym/js/user.js"></script>
 
 </head>
-<script>
-
-    var expenseMasterList = <%=session.getAttribute("expenseMasterList") %>
-    var type = 0;
-    var from =""
-    var to = "";
-    var listExp="";
-
-    function  callEditAction (id){
-
-        $.fn.loadActionDiv(id);
-    }
-
-    function  editExp (key){
-        $.fn.editExpenses(key);
-    }
-
-    function  delExp (id){
-        $.fn.delExpenses(id);
-    }
-
-
-
-</script>
 
 <body>
 <jsp:include page="sessioncheck.jsp"/>
 <jsp:include page="loader.jsp"/>
+<style>
+
+    .mb-2 {
+
+        font-size: medium !important;
+    }
+
+    .menu-sub {
+        display: block;
+
+    }
+
+</style>
+<script>
+
+    var profileMasterList = <%=session.getAttribute("profileMasterList") %>
+    var profile=0;
+    var offset =0;
+
+</script>
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- Menu -->
 
         <jsp:include page="sidemenu.jsp"/>
-
         <!-- / Menu -->
 
         <!-- Layout container -->
@@ -73,7 +59,6 @@
             <!-- Navbar -->
 
             <jsp:include page="header.jsp"/>
-
 
             <!-- / Navbar -->
 
@@ -86,9 +71,8 @@
 
 
                     <!-- Bootstrap modals -->
-                    <jsp:include page="expensePopup.jsp"/>
-                    <jsp:include page="expenseFilterPopup.jsp"/>
-                    <jsp:include page="expenseEditPopup.jsp"/>
+                    <jsp:include page="userAddPopup.jsp"/>
+                    <jsp:include page="userFilterPopup.jsp"/>
                     <!--/ Bootstrap modals -->
                     <div class="card">
                         <div class="card-header flex-column flex-md-row pb-0">
@@ -97,26 +81,27 @@
                                     <button type="button"
                                             class="btn btn-outline-primary"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#filterModal"
+                                            data-bs-target="#userFilterModal"
                                     >
                                         <span class="tf-icons bx bx-filter me-1"></span>Filter
                                     </button>
                                     <button  tabindex="0" aria-controls="DataTables_Table_0"
-                                            type="button"
-                                            class="btn btn-primary"
-                                            data-bs-toggle="modal"
+                                             type="button"
+                                             class="btn btn-primary"
+                                             data-bs-toggle="modal"
                                              style="margin-left: 14px"
-                                            data-bs-target="#exLargeModal"><span><i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New Expense</span></span></button>
+                                             data-bs-target="#userAddModal"><span><i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New User</span></span></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive text-nowrap">
-                            <table id="exptable" class="table">
+                        <div id="userTableDv" class="table-responsive text-nowrap">
+                            <table id="usertable" class="table">
                                 <thead>
                                 <tr>
-                                    <th>Expense</th>
-                                    <th>Amount</th>
-                                    <th>Added by</th>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Phone</th>
+                                    <th>Added By</th>
                                     <th>Added On</th>
                                     <th>Actions</th>
                                 </tr>
@@ -127,7 +112,7 @@
                                 </tbody>
 
                             </table>
-                           <jsp:include page="pagination.jsp"/>
+                            <jsp:include page="pagination.jsp"/>
 
 
 
@@ -157,23 +142,5 @@
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 
-<script src="/WebAppGym/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="/WebAppGym/assets/vendor/libs/popper/popper.js"></script>
-<script src="/WebAppGym/assets/vendor/js/bootstrap.js"></script>
-<script src="/WebAppGym/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="/WebAppGym/assets/vendor/js/menu.js"></script>
-
-<!-- endbuild -->
-
-<!-- Vendors JS -->
-
-<!-- Main JS -->
-<script src="/WebAppGym/assets/js/main.js"></script>
-
-<!-- Page JS -->
-<script src="/WebAppGym/assets/js/ui-modals.js"></script>
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
