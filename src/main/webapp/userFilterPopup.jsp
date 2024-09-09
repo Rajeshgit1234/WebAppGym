@@ -68,6 +68,20 @@
                                     </div>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label" for="userEditPhone">Phone</label>
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-rupee"></i></span>
+                                        <input
+                                                type="text"
+                                                id="userEditPhone"
+                                                class="form-control"
+                                                placeholder="Amount"
+                                                aria-label="Amount"
+                                                aria-describedby="basic-icon-default-email2" />
+                                    </div>
+                                </div>
+
 
                             </div>
                             <div class="modal-footer">

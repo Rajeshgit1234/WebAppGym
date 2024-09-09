@@ -43,6 +43,7 @@
 
     var profileMasterList = <%=session.getAttribute("profileMasterList") %>
     var profile=0;
+    var filterPhone="";
     var profileOwner=0;
     var offset =0;
 

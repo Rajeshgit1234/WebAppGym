@@ -39,7 +39,7 @@ window.onload = function() {
 
         var url = baseUrl+"/loadGymMembers"
 
-        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":offset ,"profile":profile});
+        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":offset ,"profile":profile,"phone":filterPhone});
         $.ajax(settings).done(function (response) {
             console.log(response);
             $.fn.closeLoader();
@@ -92,10 +92,12 @@ window.onload = function() {
 
 
         var filterProfileType =  $('#filterProfileType').val();
+        var userEditPhone =  $('#userEditPhone').val();
 
-        if(filterProfileType!=0) {
+        if(filterProfileType!=0 || userEditPhone) {
 
             profile = filterProfileType;
+            if(userEditPhone) {filterPhone = userEditPhone}else{filterPhone = ""}
 
             $("#userFilterModal").modal('hide');
             $('body').removeClass('modal-open');
@@ -106,7 +108,7 @@ window.onload = function() {
             $.fn.loadUserData();
 
         }else {
-            alert("profile is mandatory");
+            alert("profile or phone number is mandatory");
         }
 
     });
@@ -116,6 +118,7 @@ window.onload = function() {
 
 
             profile = profileOwner;
+            filterPhone = "";
 
             $("#userFilterModal").modal('hide');
             $('body').removeClass('modal-open');
@@ -229,6 +232,54 @@ window.onload = function() {
         }
 
 
+
+    };
+
+
+    $.fn.loadNextSet =function (){
+
+
+        $.fn.openLoader();
+
+
+        var url = baseUrl+"/loadGymMembers"
+
+        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset+10) ,"profile":profile,"phone":filterPhone});
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            $.fn.closeLoader();
+            response = jQuery.parseJSON(response)
+            if(response.status && response.profile.length>0) {
+                $.fn.renderPayData(response);
+                offset = offset+10;
+            }
+
+        });
+
+
+    };
+    $.fn.loadPrevSet =function (){
+
+        if(offset!=0){
+
+            $.fn.openLoader();
+
+
+            var url = baseUrl+"/loadGymMembers"
+
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset-10) ,"profile":profile,"phone":filterPhone});
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                $.fn.closeLoader();
+                response = jQuery.parseJSON(response)
+                if(response.status && response.profile.length>0) {
+                    $.fn.renderPayData(response);
+                    offset = offset-10;
+                }
+
+            });
+
+        }
 
     };
 
