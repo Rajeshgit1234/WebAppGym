@@ -1,4 +1,5 @@
 var baseUrl ="http://localhost:8763";
+var weburl ="http://localhost:8080/WebAppGym/";
 
 
 $(document).ready(function(){

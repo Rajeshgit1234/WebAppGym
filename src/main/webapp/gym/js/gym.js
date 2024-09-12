@@ -55,6 +55,46 @@ window.onload = function() {
     };
 
 
+    var regBtn = document.getElementById('regBtn');
+    regBtn.onclick = function() {
+
+        var mobile =  $('#mobile').val();
+        var password =  $('#password').val();
+
+        if(mobile && password){
+
+            if(mobile.substring(0,2).equals("91")){
+
+                mobile = mobile.substring(2,mobile.length());
+            }
+
+            if(phone_server!=mobile){
+
+                var url = baseUrl+"/registerToken"
+
+                var settings = $.fn.commonajaxCall(url,{ "token": token,"phone":phone_server ,"password":password});
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+                    $.fn.closeLoader();
+
+
+                });
+
+            }else{
+
+
+            }
+
+        }else{
+
+
+        }
+
+
+
+    };
+
+
 
 
 
