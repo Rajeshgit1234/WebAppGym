@@ -13,7 +13,7 @@ window.onload = function() {
 
         $.each(profileMasterList, function( index, value ) {
 
-            if(value.name.toUpperCase()!="ADMIN") {
+            if(value.name.toUpperCase()!="ADMIN" || value.name.toUpperCase()!="OWNER") {
                 if (value.name.toUpperCase() == "CUSTOMER") {
 
                     profile = value.id;

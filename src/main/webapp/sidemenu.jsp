@@ -1,10 +1,6 @@
 <script>
 
 
-    /*var user_id = <%=session.getAttribute("userid")%>
-    var gym_id = <%=session.getAttribute("gymid")%>*/
-
-
 
 </script>
 
@@ -78,7 +74,7 @@
                     id="homeBtn"
                     target="_self"
                     class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home"></i>
+                <i class="menu-icon  fa fa-home fa-lg"></i>
                 <div data-i18n="Email">Home</div>
             </a>
         </li>
@@ -88,7 +84,7 @@
                     href="addExpense"
                     target="_self"
                     class="menu-link">
-                <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
+                <i class="menu-icon  fa fa-credit-card-alt fa-lg"></i>
                 <div data-i18n="Email">Expenses</div>
             </a>
         </li>
@@ -97,22 +93,49 @@
                     href="markpayment"
                     target="_self"
                     class="menu-link">
-                <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
+                <i class="menu-icon  fa fa-money fa-lg"></i>
                 <div data-i18n="Email">Mark payment</div>
             </a>
+        </li>
+
+        <li class="menu-item" id="attendanceMenu">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon  fa fa-pencil-square-o fa-lg"></i>
+                <div data-i18n="Layouts">Attendance </div>
+            </a>
+
+            <ul class="menu-sub" id="attendanceSub">
+                <li class="menu-item">
+                    <a href="attendanceSheet" class="menu-link">
+                        <div data-i18n="Without navbar">Attendance Sheet </div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="todayAttendance" class="menu-link">
+                        <div data-i18n="Without navbar"> Today's Attendance</div>
+                    </a>
+                </li>
+                <li class="menu-item" >
+                    <a href="markattendance" class="menu-link">
+                        <div data-i18n="Without menu">Mark Attendance</div>
+                    </a>
+                </li>
+
+
+            </ul>
         </li>
          <li class="menu-item" >
             <a
                     href="profile"
                     target="_self"
                     class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user"></i>
+                <i class="menu-icon  fa fa-user-o fa-lg"></i>
                 <div data-i18n="Email">Profile</div>
             </a>
         </li>
         <li class="menu-item" id="settingsMenu">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <i class="menu-icon  fa fa-cog fa-lg"></i>
                 <div data-i18n="Layouts">Settings</div>
             </a>
 
@@ -123,11 +146,11 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
-                        <div data-i18n="Without navbar">Profiles</div>
+                    <a href="changepwd" class="menu-link">
+                        <div data-i18n="Without navbar">Change password</div>
                     </a>
                 </li><li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
+                    <a href="expMaster" class="menu-link">
                         <div data-i18n="Without navbar">New expense item</div>
                     </a>
                 </li>

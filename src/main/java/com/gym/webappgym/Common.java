@@ -24,8 +24,8 @@ public class Common {
             String gym_id = request.getParameter("gym_id");
 
             JSONObject reqObj = new JSONObject();
-            reqObj.put("gym_id",Integer.valueOf(user_id));
-            reqObj.put("user_id",Integer.valueOf(gym_id));
+            reqObj.put("gym_id",Integer.valueOf(gym_id));
+            reqObj.put("user_id",Integer.valueOf(user_id));
             HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/homeData")
                     .header("Content-Type", "application/json")
                     //.body("{\"username\":\"test\",\"password\":\"test\"}")

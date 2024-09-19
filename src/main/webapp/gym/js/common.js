@@ -100,6 +100,11 @@ $(document).ready(function(){
         $("#settingSub").css("display", "block");
 
 
+    });;$("#attendanceMenu").click(function () {
+
+        $("#attendanceSub").css("display", "block");
+
+
     });;
 
     $("#paginationNext").click(function () {

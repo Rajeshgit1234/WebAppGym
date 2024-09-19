@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/WebAppGym/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
 <link rel="stylesheet" href="/WebAppGym/assets/css/demo.css" />
 <link rel="stylesheet" href="/WebAppGym/gym/css/gym.css" />
+<link rel="stylesheet" href="/WebAppGym/gym/font-awesome-4.7.0/css/font-awesome.min.css">
 
 
 <!-- Vendors CSS -->
