@@ -128,10 +128,10 @@
                                 <div class="card-body">
                                     <small class="text-light fw-medium">Attendance Sheet</small>
                                     <div class="demo-inline-spacing">
-                                        <div class="btn-group" style="width: 30%;padding-right: 2%">
+                                        <div class="btn-group" style="width: auto;padding-right: 2%">
 
 
-                                            <div class="input-group input-group-merge">
+                                            <%--<div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
                                             ><i class="bx bx-calendar"></i
                                             ></span>
@@ -142,13 +142,30 @@
                                                         placeholder="Choose start date"
                                                         aria-label="Choose start date"
                                                         aria-describedby="basic-icon-default-fullname2" />
-                                            </div>
+                                            </div>--%>
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <button  type="button" class="btn btn-outline-secondary" style="border: none;width: 100%">Attendance From  </button>
+
+                                                    <div class="input-group input-group-merge">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                                            ><i class="bx bx-calendar"></i
+                                            ></span>
+                                                        <input
+                                                                type="date"
+                                                                class="form-control"
+                                                                id="attFrom"
+                                                                placeholder="Choose start date"
+                                                                aria-label="Choose start date"
+                                                                aria-describedby="basic-icon-default-fullname2" />
+                                                    </div>
+                                                </div>
+
 
                                         </div>
-                                        <div class="btn-group" style="width: 30%;padding-left: 2%">
+                                        <div class="btn-group" style="width: auto;padding-left: 0%">
 
 
-                                            <div class="input-group input-group-merge">
+                                           <%-- <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
                                             ><i class="bx bx-calendar"></i
                                             ></span>
@@ -159,11 +176,27 @@
                                                         placeholder="Choose end date"
                                                         aria-label="Choose end date"
                                                         aria-describedby="basic-icon-default-fullname2" />
-                                            </div>
+                                            </div>--%>
+                                               <div class="btn-group" role="group" aria-label="Basic example">
+                                                   <button type="button" class="btn btn-outline-secondary" style="border: none;">To</button>
+
+                                                   <div class="input-group input-group-merge">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                                            ><i class="bx bx-calendar"></i
+                                            ></span>
+                                                       <input
+                                                               type="date"
+                                                               class="form-control"
+                                                               id="attTo"
+                                                               placeholder="Choose start date"
+                                                               aria-label="Choose start date"
+                                                               aria-describedby="basic-icon-default-fullname2" />
+                                                   </div>
+                                               </div>
 
                                         </div>
                                         <div class="btn-group" style="padding-left: 10%">
-                                            <button type="button" class="btn rounded-pill btn-outline-secondary">Search</button>
+                                            <button id="searchAttBtn" type="button" class="btn rounded-pill btn-outline-secondary">Search</button>
                                         </div>
                                     </div>
                                 </div>

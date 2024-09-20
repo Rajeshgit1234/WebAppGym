@@ -36,7 +36,8 @@ window.onload = function() {
         $("#attHeading").empty();
         $("#attRow").empty();
 
-
+        $('#attFrom').val(attJson.fromdate);
+        $('#attTo').val(attJson.toDate);
         if(attJson.status){
 
             if(attJson.doyJson.length!=0 && attJson.custJson.length!=0){
@@ -92,6 +93,59 @@ window.onload = function() {
 
     }
 
+
+    $("#searchAttBtn").click(function() {
+
+
+        var attTo =  $('#attTo').val();
+        var attFrom =  $('#attFrom').val();
+
+
+        if(attTo && attFrom){
+
+            from= attFrom;
+            to=attTo;
+
+            $.fn.loadUserData();
+
+        }else{
+
+            alert("Please enter details")
+        }
+
+
+
+    });
+
+
+    $('#attFrom').on('input',function(e){
+
+        var attFrom =  $('#attFrom').val();
+
+        var date = new Date(attFrom.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"))
+       //alert(date)
+        date.setDate(date.getDate() + 15);
+        var  endDate = (date).toISOString().split('T')[0];
+        $('#attTo').val(endDate);
+       // alert(date)
+        /*var endDate = new Date();
+        endDate.setDate(date.getDate()+15);
+        endDate = (endDate).toISOString().split('T')[0];
+
+        $('#attTo').val(endDate);*/
+
+
+    });
+    $('#attTo').on('input',function(e){
+
+        var attTo =  $('#attTo').val();
+
+        var date = new Date(attTo.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"))
+        //alert(date)
+        date.setDate(date.getDate() - 15);
+        var  fromDate = (date).toISOString().split('T')[0];
+        $('#attFrom').val(fromDate);
+    });
 
 
 
