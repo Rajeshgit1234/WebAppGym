@@ -19,7 +19,7 @@
 
     <!-- Favicon -->
     <jsp:include page="scriptsandcss.jsp"/>
-    <script type="text/javascript" src="/WebAppGym/gym/js/user.js"></script>
+    <script type="text/javascript" src="/WebAppGym/gym/js/subscriptionPlans.js"></script>
 
 </head>
 
@@ -41,15 +41,16 @@
 </style>
 <script>
 
-    var profileMasterList = <%=session.getAttribute("profileMasterList") %>
-    var profile=0;
-    var filterPhone="";
-    var profileOwner=0;
+
     var offset =0;
 
     function  callEditAction (id){
 
         $.fn.loadActionDiv(id);
+    }
+
+    function  delPlan (id){
+        $.fn.delPlanAction(id);
     }
 
 </script>
@@ -74,41 +75,33 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Home/</span> User Management</h4>
+                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Home/</span> Subscription Plans</h4>
 
 
                     <!-- Bootstrap modals -->
-                    <jsp:include page="userAddPopup.jsp"/>
-                    <jsp:include page="userFilterPopup.jsp"/>
+                    <jsp:include page="subscriptionAdd.jsp"/>
                     <!--/ Bootstrap modals -->
                     <div class="card">
                         <div class="card-header flex-column flex-md-row pb-0">
                             <div class="dt-action-buttons text-end pt-6 pt-md-0" style="padding-bottom: 4%">
                                 <div class="dt-buttons btn-group flex-wrap">
-                                    <button type="button"
-                                            class="btn btn-outline-primary"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#userFilterModal"
-                                    >
-                                        <span class="tf-icons bx bx-filter me-1"></span>Filter
-                                    </button>
+
                                     <button  tabindex="0" aria-controls="DataTables_Table_0"
                                              type="button"
                                              class="btn btn-primary"
                                              data-bs-toggle="modal"
                                              style="margin-left: 14px"
-                                             data-bs-target="#userAddModal"><span><i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New User</span></span></button>
+                                             data-bs-target="#planAddModal"><span><i class="bx bx-plus bx-sm me-sm-2"></i> <span class="d-none d-sm-inline-block">Add New Plan</span></span></button>
                                 </div>
                             </div>
                         </div>
-                        <div id="userTableDv" class="table-responsive text-nowrap">
-                            <table id="usertable" class="table">
+                        <div id="subTableDv" class="table-responsive text-nowrap">
+                            <table id="subtable" class="table">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
+                                    <th>Plan</th>
                                     <th>Added By</th>
+                                    <th>Added On</th>
 
                                     <th>Actions</th>
                                 </tr>

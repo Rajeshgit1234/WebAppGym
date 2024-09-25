@@ -149,4 +149,54 @@ window.onload = function() {
 
 
 
+    $.fn.loadNextSet =function (){
+
+
+        $.fn.openLoader();
+
+
+        var url = baseUrl+"/viewAttendanceMonth"
+
+        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset+10) ,"from":from,"to":to});
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            $.fn.closeLoader();
+            response = jQuery.parseJSON(response)
+
+            if(response.status ) {
+                $.fn.renderAttData((response));
+                offset = offset+10;
+            }
+
+        });
+
+
+    };
+    $.fn.loadPrevSet =function (){
+
+        if(offset!=0){
+
+
+            $.fn.openLoader();
+
+
+            var url = baseUrl+"/viewAttendanceMonth"
+
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset-10) ,"from":from,"to":to});
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                $.fn.closeLoader();
+                response = jQuery.parseJSON(response)
+                if(response.status ) {
+                    $.fn.renderAttData(response);
+                    offset = offset-10;
+                }
+
+            });
+
+        }
+
+    };
+
+
 };

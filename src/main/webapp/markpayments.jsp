@@ -34,7 +34,10 @@
 <script>
 
     var profile = <%=session.getAttribute("customers") %>
-   var customer = 0;
+    var subscriptionplans = <%=session.getAttribute("subscriptionplans") %>
+    var subAmountList =  {};
+
+    var customer = 0;
    var filteryear = 0;
     var filterMonth = 0;
 

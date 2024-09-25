@@ -148,7 +148,7 @@ window.onload = function() {
             var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"user":sessionStorage.getItem("user_id")});
             $.ajax(settings).done(function (response) {
                 console.log(response);
-
+                response = jQuery.parseJSON(response)
                 if(response.status) {
                     $("#alertDiv").html(response.statusDesc)
                     $("#alertDiv").addClass('alert alert-success');

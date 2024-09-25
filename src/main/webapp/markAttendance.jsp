@@ -49,6 +49,12 @@
     }
 
 </style>
+<script>
+
+    var profile = <%=session.getAttribute("customers") %>
+
+
+</script>
 
 <body>
 <jsp:include page="sessioncheck.jsp"/>
@@ -76,7 +82,7 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Home/</span> Change Password</h4>
+                    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Home/</span> Mark Attendance </h4>
 
                     <div class="row">
                         <div class="col-md-12">
@@ -84,34 +90,31 @@
 
                             <div id="regFrom" class="mb-3" >
                                 <div class="mb-3">
-                                    <label for="cpassword" class="form-label">Current Password</label>
-                                    <input
-                                            type="password"
-                                            class="form-control"
-                                            id="cpassword"
-                                            name="password"
-                                            placeholder="Enter your mobile number"
-                                            autofocus />
+                                    <label class="form-label" for="usersList">User </label>
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-company2" class="input-group-text" ><i class="fa fa-user fa-lg"></i></span>
+
+                                        <select id="usersList" class="select2 form-select">
+                                            <option value="">Select</option>
+
+                                        </select>
+                                    </div>
                                 </div><div class="mb-3">
-                                <label for="npassword" class="form-label">New Password</label>
-                                <input
-                                        type="password"
-                                        class="form-control"
-                                        id="npassword"
-                                        name="new password"
-                                        placeholder="Enter your password"
-                                        autofocus />
-                            </div><div class="mb-3">
-                                <label for="cnpassword" class="form-label">Confirm Password</label>
-                                <input
-                                        type="password"
-                                        class="form-control"
-                                        id="cnpassword"
-                                        name="confirm password"
-                                        placeholder="Enter your password"
-                                        autofocus />
+                                <label class="form-label" for="attDate">Date</label>
+                                <div class="input-group input-group-merge">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                                            ><i class="fa fa-calendar fa-lg"></i
+                                            ></span>
+                                    <input
+                                            type="date"
+                                            class="form-control"
+                                            id="attDate"
+                                            placeholder="Date"
+                                            aria-label="Date"
+                                            aria-describedby="basic-icon-default-fullname2" />
+                                </div>
                             </div>
-                                <button id="changePwdBtn" class="btn btn-primary d-grid w-100">Change password</button>
+                                <button id="markAttendance" class="btn btn-primary d-grid w-100">Mark Attendance</button>
                             </div>
 
                         </div>

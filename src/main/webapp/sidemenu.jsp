@@ -153,6 +153,10 @@
                     <a href="expMaster" class="menu-link">
                         <div data-i18n="Without navbar">New expense item</div>
                     </a>
+                </li><li class="menu-item">
+                    <a href="subscriptionPlans" class="menu-link">
+                        <div data-i18n="Without navbar">Subscription Plans</div>
+                    </a>
                 </li>
 
             </ul>

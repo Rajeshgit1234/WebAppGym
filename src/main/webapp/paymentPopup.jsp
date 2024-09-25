@@ -58,7 +58,7 @@
                                     <label class="form-label" for="payDate">Date</label>
                                     <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
-                                            ><i class="bx bx-calendar"></i
+                                            ><i class="fa fa-calendar fa-lg"></i
                                             ></span>
                                         <input
                                                 type="date"
@@ -72,7 +72,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="usersList">User </label>
                                     <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="bx bx-purchase-tag"></i></span>
+                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="fa fa-user fa-lg"></i></span>
 
                                         <select id="usersList" class="select2 form-select">
                                             <option value="">Select</option>
@@ -83,11 +83,10 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="usersList">Subscription </label>
                                     <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="bx bx-purchase-tag"></i></span>
+                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="fa fa-pencil fa-lg"></i></span>
 
                                         <select id="paySub" class="select2 form-select">
                                             <option value="0">Select</option>
-                                            <option value="Monthly">Monthly</option>
 
                                         </select>
                                     </div>
@@ -169,7 +168,7 @@
                                 <div class="mb-3" >
                                     <label class="form-label" for="usersList">Description </label>
                                     <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="bx bx-note"></i></span>
+                                    <span id="basic-icon-default-company2" class="input-group-text" ><i class="fa fa-sticky-note fa-lg"></i></span>
 
                                         <input
                                                 type="text"

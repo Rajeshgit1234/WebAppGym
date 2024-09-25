@@ -58,7 +58,7 @@ public class MarkPayment extends HttpServlet {
 
             JSONObject reqObj = new JSONObject();
             reqObj.put("gym_id",Integer.valueOf(gymid));
-            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/loadGymCustomers")
+            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/loadGymCustomersFull")
                     .header("Content-Type", "application/json")
                     //.body("{\"username\":\"test\",\"password\":\"test\"}")
                     .body(reqObj.toString())

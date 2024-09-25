@@ -15,6 +15,7 @@ window.onload = function() {
         document.getElementById("payDate").valueAsDate = new Date();
 
         var usersList = $("#usersList");
+        var paySub = $("#paySub");
         var usersListFilter = $("#usersListFilter");
 
 
@@ -35,6 +36,16 @@ window.onload = function() {
                 $("<option></option>").val(value.id).html(value.name +" ( "+ value.phone+" ) ")
             );
         })
+        subAmountList[0] = 0;
+
+        $.each(subscriptionplans, function( index, value ) {
+
+            paySub.append(
+                $("<option></option>").val(value.subId).html(value.subName )
+            );
+
+            subAmountList[value.subId] = value.subAmount;
+        })
 
 
         $.fn.loadPayData();
@@ -42,6 +53,7 @@ window.onload = function() {
 
 
     });
+
 
 
     $.fn.loadPayData = function(){
@@ -139,6 +151,12 @@ window.onload = function() {
 
     }
 
+    $("#paySub").change(function() {
+        var subId = ( $('option:selected', this).val() );
+        var amnt = subAmountList[subId];
+        if(( amnt))
+            $('#payAmount').val(amnt);
+    });
 
     $("#addPayBtn").click(function() {
 
