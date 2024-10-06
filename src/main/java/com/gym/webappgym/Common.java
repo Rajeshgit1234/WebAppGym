@@ -40,6 +40,7 @@ public class Common {
                 JSONArray expenseMasterList = respJson.getJSONArray("expenseMasterList");
                 JSONArray profileMasterList = respJson.getJSONArray("profileMasterList");
                 JSONArray subscriptionplans = respJson.getJSONArray("subscriptionplans");
+                JSONArray payList = respJson.getJSONArray("payList");
                 JSONArray expData = respJson.getJSONArray("expData");
                 System.out.println("gymuser"+gymuserJson);
                 System.out.println("expenseList"+expenseMasterList);
@@ -51,6 +52,7 @@ public class Common {
                 ses.setAttribute("expenseMasterList", expenseMasterList);
                 ses.setAttribute("profileMasterList", profileMasterList);
                 ses.setAttribute("subscriptionplans", subscriptionplans);
+                ses.setAttribute("payList", payList);
                 ses.setAttribute("expData", expData);
                 ses.setAttribute("userid",gymuserJson.getInt("userid"));
                 ses.setAttribute("gymid",gymuserJson.getInt("gymid"));

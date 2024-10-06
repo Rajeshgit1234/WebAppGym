@@ -6,11 +6,23 @@ window.onload = function() {
         var piechartoptionslabels = [];
         var piechartoptionsvalues = [];
 
+        /*var payoptionsDataLabel = ['2018-09-01', '2018-09-02', '2018-09-03'];
+        var payoptionsData = [150, 145, 15];*/
+        var payoptionsDataLabel = [];
+        var payoptionsData = [];
 
         $.each(expData, function( index, value ) {
 
             piechartoptionslabels.push(value.expItem);
             piechartoptionsvalues.push(value.amount);
+
+
+        })
+
+        $.each(payList, function( index, value ) {
+
+            payoptionsDataLabel.push(value.pay_date);
+            payoptionsData.push(value.pay_amount);
 
 
         })
@@ -85,9 +97,8 @@ window.onload = function() {
         piechart.render();
 
         var expoptionsData = [47, 45, 54];
-        var payoptionsData = [150, 145, 15];
+
         var expoptionsDataLabel = ['2018-09-01', '2018-09-02', '2018-09-03'];
-        var payoptionsDataLabel = ['2018-09-01', '2018-09-02', '2018-09-03'];
 
 
         var expoptions = {

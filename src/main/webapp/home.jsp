@@ -41,6 +41,7 @@
 <script>
     var expenseMasterList = <%=session.getAttribute("expenseMasterList") %>
     var expData = <%=session.getAttribute("expData") %>
+    var payList = <%=session.getAttribute("payList") %>
     var exp_total = '${exp_total}';
     var pay_total = '${pay_total}';
 
