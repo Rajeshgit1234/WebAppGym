@@ -40,15 +40,18 @@ public class Common {
                 JSONArray expenseMasterList = respJson.getJSONArray("expenseMasterList");
                 JSONArray profileMasterList = respJson.getJSONArray("profileMasterList");
                 JSONArray subscriptionplans = respJson.getJSONArray("subscriptionplans");
+                JSONArray expData = respJson.getJSONArray("expData");
                 System.out.println("gymuser"+gymuserJson);
                 System.out.println("expenseList"+expenseMasterList);
                 request.setAttribute("name", gymuserJson.getString("name"));
                 request.setAttribute("exp_total", respJson.getString("exp_total"));
+                request.setAttribute("pay_total", respJson.getString("pay_total"));
                 HttpSession ses = request.getSession(true);
 
                 ses.setAttribute("expenseMasterList", expenseMasterList);
                 ses.setAttribute("profileMasterList", profileMasterList);
                 ses.setAttribute("subscriptionplans", subscriptionplans);
+                ses.setAttribute("expData", expData);
                 ses.setAttribute("userid",gymuserJson.getInt("userid"));
                 ses.setAttribute("gymid",gymuserJson.getInt("gymid"));
 

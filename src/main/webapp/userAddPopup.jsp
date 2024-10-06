@@ -58,8 +58,7 @@
                 <label class="form-label" for="name">Name</label>
                 <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
-                                            ><i class="bx bx-calendar"></i
-                                            ></span>
+                                            ><i class="fa fa-user-o fa-lg"></i></span>
                   <input
                           type="text"
                           class="form-control"
@@ -72,7 +71,7 @@
               <div class="mb-3">
                 <label class="form-label" for="profileType">Profile </label>
                 <div class="input-group input-group-merge">
-                  <span id="basic-icon-default-company2" class="input-group-text" ><i class="bx bx-purchase-tag"></i></span>
+                  <span id="basic-icon-default-company2" class="input-group-text" ><i class="fa fa-users fa-lg"></i></span>
 
                   <select id="profileType" class="select2 form-select">
                     <option value="">Select</option>
@@ -98,11 +97,21 @@
                 </div>
               </div>--%>
                 <div class="mb-3">
+                    <label class="form-label" for="subscriptionPlan">Subscriptions </label>
+                    <div class="input-group input-group-merge">
+                        <span id="basic-icon-default-company2" class="input-group-text" ><i class="fa fa-cc-amex fa-lg"></i></span>
+
+                        <select id="subscriptionPlan" class="select2 form-select">
+                            <option value="">Select</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
                 <label class="form-label" for="address">Address</label>
                 <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
-                                            ><i class="bx bx-calendar"></i
-                                            ></span>
+                                            ><i class="fa fa-address-card fa-lg"></i></span>
                  <%-- <input
                           type="text"
                           class="form-control"
@@ -116,8 +125,7 @@
                 <label class="form-label" for="phone">phone</label>
                 <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
-                                            ><i class="bx bx-calendar"></i
-                                            ></span>
+                                            ><i class="fa fa-phone fa-lg"></i></span>
                   <input
                           type="tel"
                           class="form-control"
@@ -130,8 +138,7 @@
                 <label class="form-label" for="email">email</label>
                 <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
-                                            ><i class="bx bx-calendar"></i
-                                            ></span>
+                                            ><i class="fa fa-envelope fa-lg"></i></span>
                   <input
                           type="email"
                           class="form-control"

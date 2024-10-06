@@ -9,6 +9,7 @@ window.onload = function() {
 
         var profileType = $("#profileType");
         var filterProfileType = $("#filterProfileType");
+        var subscriptionPlan = $("#subscriptionPlan");
 
 
         $.each(profileMasterList, function( index, value ) {
@@ -29,6 +30,16 @@ window.onload = function() {
 
             }
         })
+        $.each(subscriptionplans, function( index, value ) {
+
+
+            subscriptionPlan.append(
+                    $("<option></option>").val(value.subId).html(value.subName)
+                );
+
+
+        })
+
 
         $.fn.loadUserData();
 
@@ -70,7 +81,7 @@ window.onload = function() {
                     var created_date = moment(value.addedOn).format('YYYY-MM-DD');
 
 
-                     $('#usertable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.phone + '</td><td>' + value.address + '</td><td>' + value.addedby + ' </td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                     $('#usertable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.phone + '</td><td>' + value.subscription + '</td><td>' + value.address + '</td><td>' + value.addedby + ' </td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
                 });
             } else {
@@ -96,7 +107,7 @@ window.onload = function() {
 
         if(filterProfileType!=0 || userEditPhone) {
 
-            profile = filterProfileType;
+            if(filterProfileType!=0){profile = filterProfileType};
             if(userEditPhone) {filterPhone = userEditPhone}else{filterPhone = ""}
 
             $("#userFilterModal").modal('hide');
@@ -138,6 +149,7 @@ window.onload = function() {
         var address =  $('#address').val();
         var phone =  $('#phone').val();
         var email =  $('#email').val();
+        var subscriptionPlan =  $('#subscriptionPlan').val();
         var username ="";
 
         if(name && profileType!=0  && address && phone && email) {
@@ -145,7 +157,7 @@ window.onload = function() {
 
             var url = baseUrl+"/addNewGymUser"
 
-            var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"user":sessionStorage.getItem("user_id")});
+            var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"subscription":subscriptionPlan,"user":sessionStorage.getItem("user_id")});
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 response = jQuery.parseJSON(response)

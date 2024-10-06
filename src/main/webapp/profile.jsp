@@ -42,6 +42,19 @@
 
 
 </script>
+<style>
+
+    .mb-2 {
+
+        font-size: medium !important;
+    }
+
+    #settingSub {
+        display: block;
+
+    }
+
+</style>
 
 <body>
 <jsp:include page="sessioncheck.jsp"/>

@@ -1,6 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<link rel="icon" type="image/x-icon" href="/WebAppGym/assets/img/favicon/favicon.ico" />
+<%--<link rel="icon" type="image/x-icon" href="/WebAppGym/assets/img/favicon/favicon.ico" />--%>
+<link rel="icon" type="image/png" sizes="16x16" href="/WebAppGym/assets/img/favicon.ico">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,6 +18,7 @@
 <link rel="stylesheet" href="/WebAppGym/assets/css/demo.css" />
 <link rel="stylesheet" href="/WebAppGym/gym/css/gym.css" />
 <link rel="stylesheet" href="/WebAppGym/gym/font-awesome-4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/d71379e875.js" crossorigin="anonymous"></script>
 
 
 <!-- Vendors CSS -->

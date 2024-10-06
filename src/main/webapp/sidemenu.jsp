@@ -8,53 +8,9 @@
     <div class="app-brand demo">
         <a href="index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
-                <svg
-                        width="25"
-                        viewBox="0 0 25 42"
-                        version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <defs>
-                    <path
-                            d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
-                            id="path-1"></path>
-                    <path
-                            d="M5.47320593,6.00457225 C4.05321814,8.216144 4.36334763,10.0722806 6.40359441,11.5729822 C8.61520715,12.571656 10.0999176,13.2171421 10.8577257,13.5094407 L15.5088241,14.433041 L18.6192054,7.984237 C15.5364148,3.11535317 13.9273018,0.573395879 13.7918663,0.358365126 C13.5790555,0.511491653 10.8061687,2.3935607 5.47320593,6.00457225 Z"
-                            id="path-3"></path>
-                    <path
-                            d="M7.50063644,21.2294429 L12.3234468,23.3159332 C14.1688022,24.7579751 14.397098,26.4880487 13.008334,28.506154 C11.6195701,30.5242593 10.3099883,31.790241 9.07958868,32.3040991 C5.78142938,33.4346997 4.13234973,34 4.13234973,34 C4.13234973,34 2.75489982,33.0538207 2.37032616e-14,31.1614621 C-0.55822714,27.8186216 -0.55822714,26.0572515 -4.05231404e-15,25.8773518 C0.83734071,25.6075023 2.77988457,22.8248993 3.3049379,22.52991 C3.65497346,22.3332504 5.05353963,21.8997614 7.50063644,21.2294429 Z"
-                            id="path-4"></path>
-                    <path
-                            d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
-                            id="path-5"></path>
-                  </defs>
-                  <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
-                      <g id="Icon" transform="translate(27.000000, 15.000000)">
-                        <g id="Mask" transform="translate(0.000000, 8.000000)">
-                          <mask id="mask-2" fill="white">
-                            <use xlink:href="#path-1"></use>
-                          </mask>
-                          <use fill="#696cff" xlink:href="#path-1"></use>
-                          <g id="Path-3" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-3"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
-                          </g>
-                          <g id="Path-4" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-4"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
-                          </g>
-                        </g>
-                        <g
-                                id="Triangle"
-                                transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) ">
-                          <use fill="#696cff" xlink:href="#path-5"></use>
-                          <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
-                        </g>
-                      </g>
-                    </g>
-                  </g>
-                </svg>
+
+
+                  <svg fill="#6a6cff" height="177px" width="177px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 503.607 503.607" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M398.865,209.836h-12.766v-81.467c0-24.5-19.934-44.435-44.435-44.435h-1.066l-5.741-10.005 c-5.389-9.401-8.242-19.892-8.242-30.342C326.614,19.557,304.732,0,277.831,0h-85.63c-26.901,0-48.783,19.557-48.783,43.587 c0,10.45-2.854,20.942-8.242,30.342l-5.741,10.005h-1.066c-24.5,0-44.435,19.934-44.435,44.435v246.868 c0,24.5,19.934,44.435,44.435,44.435h1.066l5.741,10.005c5.389,9.401,8.242,19.892,8.242,30.342 c0,24.03,21.882,43.587,48.783,43.587h85.63c26.901,0,48.783-19.557,48.783-43.587c0-10.45,2.854-20.942,8.242-30.342 l5.741-10.005h1.066c24.5,0,44.435-19.934,44.435-44.435V293.77h12.766c11.474,0,20.807-9.334,20.807-20.807v-42.32 C419.672,219.17,410.339,209.836,398.865,209.836z M149.739,82.281c6.849-11.935,10.467-25.315,10.467-38.694 c0-14.781,14.353-26.8,31.996-26.8h85.63c17.643,0,31.996,12.019,31.996,26.8c0,13.379,3.618,26.758,10.467,38.694l0.948,1.654 H148.791L149.739,82.281z M176.262,184.656c-4.642,0-8.393-3.76-8.393-8.393s3.752-8.393,8.393-8.393h58.754 c4.642,0,8.393,3.76,8.393,8.393s-3.752,8.393-8.393,8.393H176.262z M218.229,209.836c0,4.633-3.752,8.393-8.393,8.393h-33.574 c-4.642,0-8.393-3.76-8.393-8.393s3.752-8.393,8.393-8.393h33.574C214.478,201.443,218.229,205.203,218.229,209.836z M243.41,201.443h50.361c4.642,0,8.393,3.76,8.393,8.393s-3.752,8.393-8.393,8.393H243.41c-4.642,0-8.393-3.76-8.393-8.393 S238.768,201.443,243.41,201.443z M293.77,184.656h-25.18c-4.642,0-8.393-3.76-8.393-8.393s3.752-8.393,8.393-8.393h25.18 c4.642,0,8.393,3.76,8.393,8.393S298.412,184.656,293.77,184.656z M293.77,151.082H176.262c-4.642,0-8.393-3.76-8.393-8.393 s3.752-8.393,8.393-8.393H293.77c4.642,0,8.393,3.76,8.393,8.393S298.412,151.082,293.77,151.082z M320.294,421.326 c-6.849,11.935-10.467,25.315-10.467,38.694c0,14.781-14.353,26.8-31.996,26.8h-85.63c-17.643,0-31.996-12.019-31.996-26.8 c0-13.379-3.618-26.758-10.467-38.694l-0.948-1.654h172.452L320.294,421.326z M344.131,327.344h-11.6l-22.855,45.719 c-1.561,3.106-4.826,4.961-8.343,4.6c-3.458-0.344-6.345-2.787-7.269-6.144l-20.01-73.35l-15.058,25.105 c-1.511,2.526-4.239,4.071-7.193,4.071h-20.69l-31.081,46.626c-1.57,2.35-4.205,3.735-6.983,3.735 c-0.445,0-0.89-0.034-1.343-0.109c-3.248-0.529-5.884-2.904-6.757-6.077l-20.329-74.534l-23.342,35.017 c-1.561,2.333-4.18,3.735-6.983,3.735h-16.787c-4.642,0-8.393-3.76-8.393-8.393c0-4.633,3.752-8.393,8.393-8.393h12.296 l31.081-46.626c1.821-2.728,5.053-4.146,8.326-3.626c3.248,0.529,5.884,2.904,6.757,6.077l20.329,74.534l23.342-35.017 c1.561-2.333,4.18-3.735,6.983-3.735h20.43l22.738-37.896c1.729-2.871,4.969-4.457,8.343-3.995c3.324,0.462,6.06,2.871,6.95,6.11 l19.397,71.134l15.352-30.712c1.427-2.845,4.331-4.642,7.512-4.642h16.787c4.642,0,8.393,3.76,8.393,8.393 C352.525,323.584,348.773,327.344,344.131,327.344z"></path> </g> </g> </g></svg>
               </span>
             <span class="app-brand-text demo menu-text fw-bold ms-2">Vortex</span>
         </a>
@@ -110,11 +66,11 @@
                         <div data-i18n="Without navbar">Attendance Sheet </div>
                     </a>
                 </li>
-                <li class="menu-item">
+               <%-- <li class="menu-item">
                     <a href="todayAttendance" class="menu-link">
                         <div data-i18n="Without navbar"> Today's Attendance</div>
                     </a>
-                </li>
+                </li>--%>
                 <li class="menu-item" >
                     <a href="markattendance" class="menu-link">
                         <div data-i18n="Without menu">Mark Attendance</div>
@@ -124,14 +80,61 @@
 
             </ul>
         </li>
+        <li class="menu-item">
+            <a
+                    href="assignsub"
+                    target="_self"
+                    class="menu-link">
+                <i class="menu-icon fa-duotone fa-solid fa-calendar-plus"></i>
+                <div data-i18n="Email">Map Subscription </div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a
+                    href="assignPT"
+                    target="_self"
+                    class="menu-link">
+                <i class="menu-icon  fa-duotone fa-solid fa-dumbbell"></i>
+                <div data-i18n="Email">Assign  PT</div>
+            </a>
+        </li>
          <li class="menu-item" >
             <a
-                    href="profile"
+                    href="users"
                     target="_self"
                     class="menu-link">
                 <i class="menu-icon  fa fa-user-o fa-lg"></i>
-                <div data-i18n="Email">Profile</div>
+                <div data-i18n="Email">Users Management</div>
             </a>
+        </li>
+        <li class="menu-item" id="enqMenu">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon  fa-duotone fa-solid fa-headset"></i>
+                <div data-i18n="Layouts">Inquiry </div>
+            </a>
+
+            <ul class="menu-sub" id="enqMenuSub">
+
+                <li class="menu-item" >
+                    <a href="viewEnq" class="menu-link">
+                        <div data-i18n="Without menu">view</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="addEnq" class="menu-link">
+                        <div data-i18n="Without navbar">Add  </div>
+                    </a>
+                </li>
+                <%-- <li class="menu-item">
+                     <a href="todayAttendance" class="menu-link">
+                         <div data-i18n="Without navbar"> Today's Attendance</div>
+                     </a>
+                 </li>--%>
+
+
+
+            </ul>
         </li>
         <li class="menu-item" id="settingsMenu">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -141,8 +144,8 @@
 
             <ul class="menu-sub" id="settingSub">
                 <li class="menu-item" >
-                    <a href="users" class="menu-link">
-                        <div data-i18n="Without menu">Users</div>
+                    <a href="profile" class="menu-link">
+                        <div data-i18n="Without menu">Profile</div>
                     </a>
                 </li>
                 <li class="menu-item">
