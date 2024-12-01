@@ -6,7 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <style>
-
+    #loading {
+        display: none ;
+    }
 /*
     #loading {
         width: 100% !important;
@@ -187,7 +189,7 @@
     </div>
 </div>--%>
 
-<div class="modal fade" role="dialog" id="loading" >
+<%--<div class="modal fade" role="dialog" id="loading" >
 
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" style="
@@ -207,5 +209,26 @@
     </div>
 
 
-</div>
+</div>--%>
 
+<div class="modal fade" id="loading"  aria-hidden="true">
+
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content" style="
+    box-shadow: none;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    margin: 40%;">
+
+
+            <div class="spinner-border spinner-border-lg text-secondary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
