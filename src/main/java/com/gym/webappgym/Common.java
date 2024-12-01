@@ -67,4 +67,43 @@ public class Common {
         }
 
     }
+
+    public static JSONObject loadSubscriptions(int gymid) {
+        JSONObject respJson = new JSONObject();
+        JSONObject reqObj = new JSONObject();
+        try{
+
+            reqObj.put("gym_id",gymid);
+            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/fetchSubscriptionPlans")
+                    .header("Content-Type", "application/json")
+                    //.body("{\"username\":\"test\",\"password\":\"test\"}")
+                    .body(reqObj.toString())
+                    .asString();
+
+             respJson = new JSONObject(loginResponse.getBody());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return respJson;
+    }
+    public static JSONObject loadDietPlans(int gymid) {
+        JSONObject respJson = new JSONObject();
+        JSONObject reqObj = new JSONObject();
+        try{
+
+            reqObj.put("gym_id",gymid);
+            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/findDietPlansFull")
+                    .header("Content-Type", "application/json")
+                    //.body("{\"username\":\"test\",\"password\":\"test\"}")
+                    .body(reqObj.toString())
+                    .asString();
+
+             respJson = new JSONObject(loginResponse.getBody());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return respJson;
+    }
 }

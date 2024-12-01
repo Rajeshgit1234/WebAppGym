@@ -22,7 +22,7 @@
 
     <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-1">
+    <ul class="menu-inner py-1" style="overflow: scroll">
         <!-- Dashboards -->
         <li class="menu-item">
             <a
@@ -87,6 +87,14 @@
                     class="menu-link">
                 <i class="menu-icon fa-duotone fa-solid fa-calendar-plus"></i>
                 <div data-i18n="Email">Map Subscription </div>
+            </a>
+        </li><li class="menu-item">
+            <a
+                    href="mapDiet"
+                    target="_self"
+                    class="menu-link">
+                <i class="menu-icon fa-duotone fa-solid fa-cutlery"></i>
+                <div data-i18n="Email">Map Diet </div>
             </a>
         </li>
         <li class="menu-item">
@@ -154,11 +162,15 @@
                     </a>
                 </li><li class="menu-item">
                     <a href="expMaster" class="menu-link">
-                        <div data-i18n="Without navbar">New expense item</div>
+                        <div data-i18n="Without navbar">Add New expense item</div>
                     </a>
                 </li><li class="menu-item">
                     <a href="subscriptionPlans" class="menu-link">
-                        <div data-i18n="Without navbar">Subscription Plans</div>
+                        <div data-i18n="Without navbar">Add new Subscription Plans</div>
+                    </a>
+                </li><li class="menu-item">
+                    <a href="addDietPlans" class="menu-link">
+                        <div data-i18n="Without navbar">Add new Diet Plans</div>
                     </a>
                 </li>
 

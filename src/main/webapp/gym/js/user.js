@@ -14,7 +14,7 @@ window.onload = function() {
 
         $.each(profileMasterList, function( index, value ) {
 
-            if(value.name.toUpperCase()!="ADMIN" || value.name.toUpperCase()!="OWNER") {
+            if(value.name.toUpperCase()!="ADMIN" && value.name.toUpperCase()!="OWNER") {
                 if (value.name.toUpperCase() == "CUSTOMER") {
 
                     profile = value.id;
@@ -150,6 +150,13 @@ window.onload = function() {
         var phone =  $('#phone').val();
         var email =  $('#email').val();
         var subscriptionPlan =  $('#subscriptionPlan').val();
+        var dietPlan = 0;
+
+        if($("#dietPlan").prop('checked') == true){
+            //do something
+             dietPlan = 1;
+        }
+
         var username ="";
 
         if(name && profileType!=0  && address && phone && email) {
@@ -157,7 +164,7 @@ window.onload = function() {
 
             var url = baseUrl+"/addNewGymUser"
 
-            var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"subscription":subscriptionPlan,"user":sessionStorage.getItem("user_id")});
+            var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"dietPlan":dietPlan,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"subscription":subscriptionPlan,"user":sessionStorage.getItem("user_id")});
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 response = jQuery.parseJSON(response)

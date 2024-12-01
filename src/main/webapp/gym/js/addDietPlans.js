@@ -5,16 +5,16 @@ window.onload = function() {
 
 
 
-        $.fn.loadPlanData();
+        $.fn.findDietPlans();
 
     });
 
 
-    $.fn.loadPlanData = function(){
+    $.fn.findDietPlans = function(){
 
-        var url = baseUrl+"/fetchSubscriptionPlans"
+        var url = baseUrl+"/findDietPlans"
 
-        var settings = $.fn.commonajaxCall(url,{ "gym": sessionStorage.getItem("gym_id"),"offset":offset });
+        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":offset });
         $.ajax(settings).done(function (response) {
             console.log(response);
             $.fn.closeLoader();
@@ -37,15 +37,15 @@ window.onload = function() {
 
         if(planJson.status){
 
-            if(planJson.subscriptionPlans.length!=0){
+            if(planJson.dietPlans.length!=0){
 
                 $("#subTableDv").css("display", "block");
-                $.each( planJson.subscriptionPlans, function( key, value ) {
+                $.each( planJson.dietPlans, function( key, value ) {
                     //2024-08-15 11:10:14.456078
-                    var created_date = moment(value.addedOn).format('YYYY-MM-DD');
+                    var created_date = moment(value.created).format('YYYY-MM-DD');
 
 
-                     $('#subtable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.subName + '</span></td><td>' +value.addedBy+ '</td><td>' +created_date+ '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPlan('+value.subId+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                     $('#subtable').append('<tr class="pyClass"> <td>' +value.dietname+ '</td><td><i className="bx bx-user"></i><span className="fw-medium"><textarea style="border: none;height: auto;width: 100%"> '+ value.diet_details + '</textarea> </span></td><td>' +value.addedby+ '</td><td>' +created_date+ '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPlan('+value.diet_id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
                 });
             } else {
@@ -67,17 +67,16 @@ window.onload = function() {
     $("#addPlanBtn").click(function() {
 
 
-        var amount =  $('#amount').val();
-        var subscriptiontext =  $('#subscriptiontext').val();
-        var duration =  $('#duration').val();
+        var diet_plan =  $('#diet_plan').val();
+        var dietName =  $('#dietName').val();
 
 
-        if(amount && subscriptiontext) {
+        if(diet_plan && dietName) {
 
 
-            var url = baseUrl+"/addSubscriptions"
+            var url = baseUrl+"/addNewDietPlan"
 
-            var settings = $.fn.commonajaxCall(url,{"gym":sessionStorage.getItem("gym_id"),"subscriptiontext":subscriptiontext,"amount":amount,"duration":duration,"user":sessionStorage.getItem("user_id")});
+            var settings = $.fn.commonajaxCall(url,{"gym":sessionStorage.getItem("gym_id"),"dietDetails":diet_plan,"dietname":dietname,"addedBy":sessionStorage.getItem("user_id")});
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 response = jQuery.parseJSON(response)
@@ -93,7 +92,7 @@ window.onload = function() {
                             $('.modal-backdrop').remove();
                         }, 2000);
 
-                    $.fn.loadPlanData();
+                    $.fn.findDietPlans();
                 }else{
 
                     $("#alertDiv").html(response.statusDesc)
@@ -127,15 +126,15 @@ window.onload = function() {
         $.fn.openLoader();
 
 
-        var url = baseUrl+"/fetchSubscriptionPlans"
+        var url = baseUrl+"/findDietPlans"
 
-        var settings = $.fn.commonajaxCall(url,{ "gym": sessionStorage.getItem("gym_id"),"offset":(offset+10) });
+        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset+10) });
         $.ajax(settings).done(function (response) {
             console.log(response);
             $.fn.closeLoader();
             response = jQuery.parseJSON(response)
-            if(response.status && response.subscriptionPlans.length>0) {
-                $.fn.renderPayData(response);
+            if(response.status && response.dietPlans.length>0) {
+                $.fn.renderData(response);
                 offset = offset+10;
             }
 
@@ -150,15 +149,15 @@ window.onload = function() {
             $.fn.openLoader();
 
 
-            var url = baseUrl+"/fetchSubscriptionPlans"
+            var url = baseUrl+"/findDietPlans"
 
-            var settings = $.fn.commonajaxCall(url,{ "gym": sessionStorage.getItem("gym_id"),"offset":(offset-10) });
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"offset":(offset-10) });
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 $.fn.closeLoader();
                 response = jQuery.parseJSON(response)
-                if(response.status && response.subscriptionPlans.length>0) {
-                    $.fn.renderPayData(response);
+                if(response.status && response.dietPlans.length>0) {
+                    $.fn.renderData(response);
                     offset = offset-10;
                 }
 
@@ -194,14 +193,14 @@ window.onload = function() {
 
 
 
-            var url = baseUrl+"/delSubscriptionPlan"
+           var url = baseUrl+"/delDietPlans"
 
-            var settings = $.fn.commonajaxCall(url,{ "subId": id,"gym": sessionStorage.getItem("gym_id")});
+            var settings = $.fn.commonajaxCall(url,{ "diet_id": id,"user": sessionStorage.getItem("user_id")});
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 response = jQuery.parseJSON(response)
                 alert(response.statusDesc)
-                $.fn.loadPlanData();
+                $.fn.findDietPlans();
             });
 
 

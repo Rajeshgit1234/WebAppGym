@@ -1,3 +1,5 @@
+/*var baseUrl ="http://43.204.230.101:8763";
+var weburl ="http://43.204.230.101:8080/WebAppGym/";*/
 var baseUrl ="http://localhost:8763";
 var weburl ="http://localhost:8080/WebAppGym/";
 
@@ -53,9 +55,9 @@ $(document).ready(function(){
 
     $.fn.openLoader =function (){
 
-        // $("#loading").css("display", "block");
+         $("#loading").css("display", "block");
 
-        $("#loading").modal('show');
+        //$("#loading").modal('show');
 
 
     }
@@ -82,9 +84,9 @@ $(document).ready(function(){
     $.fn.closeLoader =function (){
 
         $("#loading").css("display", "none");
-        $("#loading").modal('hide');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+      //  $("#loading").modal('hide');
+       // $('body').removeClass('modal-open');
+       // $('.modal-backdrop').remove();
 
     }
 

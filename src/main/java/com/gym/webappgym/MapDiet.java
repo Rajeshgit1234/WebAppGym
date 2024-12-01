@@ -13,15 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/assignsub")
-public class AssignSub extends HomeServlet{
+@WebServlet("/mapDiet")
+public class MapDiet extends HomeServlet{
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/assignsub.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/mapDiet.jsp");
             loadCustomerDetails(dispatcher,request,response);
+
             dispatcher.forward(request, response);
 
         }catch (Exception e){
@@ -33,8 +34,9 @@ public class AssignSub extends HomeServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/assignsub.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/mapDiet.jsp");
             loadCustomerDetails(dispatcher,request,response);
+
             dispatcher.forward(request, response);
 
         }catch (Exception e){
@@ -65,7 +67,7 @@ public class AssignSub extends HomeServlet{
 
 
                 customers = respJson.getJSONArray("profileCust");
-                ptuser = respJson.getJSONArray("profilePT");
+
 
 
 
@@ -79,14 +81,14 @@ public class AssignSub extends HomeServlet{
 
             HttpSession ses = request.getSession(true);
             ses.setAttribute("customers", customers);
-            ses.setAttribute("ptuser", ptuser);
-            JSONObject subscriptions = Common.loadSubscriptions(Integer.valueOf(gymid));
-            if(subscriptions.getBoolean("status")) {
+
+            JSONObject loadDietPlans = Common.loadDietPlans(Integer.valueOf(gymid));
+            if(loadDietPlans.getBoolean("status")) {
 
 
 
-                JSONArray subscriptionPlans = subscriptions.getJSONArray("subscriptionPlans");
-                ses.setAttribute("subscriptionplans", subscriptionPlans);
+                JSONArray dietPlans = loadDietPlans.getJSONArray("dietPlans");
+                ses.setAttribute("dietPlans", dietPlans);
 
 
 
@@ -101,4 +103,8 @@ public class AssignSub extends HomeServlet{
             e.printStackTrace();
         }
     }
+
+
+
+
 }

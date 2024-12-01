@@ -83,6 +83,29 @@
                             aria-describedby="basic-icon-default-fullname2" />
                 </div>
 
+                <div class="mb-3">
+                  <label class="form-label" for="amount">Duration </label>
+                  <div class="input-group input-group-merge">
+                    <span id="basic-icon-default-company21" class="input-group-text" ><i class="fa fa-money fa-lg"></i></span>
+
+                    <select id="duration" class="select2 form-select">
+                      <option value="">Select</option>
+                      <option value="1">1 Months</option>
+                      <option value="2">2 Months</option>
+                      <option value="3">3 Months</option>
+                      <option value="4">4 Months</option>
+                      <option value="5">5 Months</option>
+                      <option value="6">6 Months</option>
+                      <option value="7">7 Months</option>
+                      <option value="8">8 Months</option>
+                      <option value="9">9 Months</option>
+                      <option value="10">10 Months</option>
+                      <option value="11">11 Months</option>
+                      <option value="12">12 Months</option>
+
+                    </select>
+                  </div>
+
 
 
 

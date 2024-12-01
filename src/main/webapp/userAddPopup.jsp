@@ -134,7 +134,8 @@
                           aria-label="phone"
                           aria-describedby="basic-icon-default-fullname2" />
                 </div>
-              </div><div class="mb-3">
+              </div>
+                <div class="mb-3">
                 <label class="form-label" for="email">email</label>
                 <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -147,6 +148,13 @@
                           aria-label="email"
                           aria-describedby="basic-icon-default-fullname2" />
                 </div>
+              </div>
+
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" id="dietPlan"  />
+                        <label class="form-check-label" for="dietPlan"> Diet plan required ? </label>
+                    </div>
               </div>
 
 

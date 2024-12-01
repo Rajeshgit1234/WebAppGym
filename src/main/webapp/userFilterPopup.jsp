@@ -76,8 +76,8 @@
                                                 type="text"
                                                 id="userEditPhone"
                                                 class="form-control"
-                                                placeholder="Amount"
-                                                aria-label="Amount"
+                                                placeholder="Phone"
+                                                aria-label="Phone"
                                                 aria-describedby="basic-icon-default-email2" />
                                     </div>
                                 </div>
