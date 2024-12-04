@@ -235,6 +235,7 @@ window.onload = function() {
 
         var name =  $('#editName').val();
         var profileType =  $('#editProfileType').val();
+        var customer_id =  $('#editId').val();
        // var username =  $('#username').val();
         var address =  $('#editAddress').val();
         var phone =  $('#editPhone').val();
@@ -242,7 +243,7 @@ window.onload = function() {
         var subscriptionPlan =  $('#editSubscriptionPlan').val();
         var dietPlan = 0;
 
-        if($("#dietPlan").prop('checked') == true){
+        if($("#editDietPlan").prop('checked') == true){
             //do something
              dietPlan = 1;
         }
@@ -252,9 +253,9 @@ window.onload = function() {
         if(name && profileType!=0  && address && phone && email) {
 
 
-            var url = baseUrl+"/addNewGymUser"
+            var url = baseUrl+"/editGymUser"
 
-            var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"dietPlan":dietPlan,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"subscription":subscriptionPlan,"user":sessionStorage.getItem("user_id")});
+            var settings = $.fn.commonajaxCall(url,{"name":name,"dietPlan":dietPlan,"address":address,"profile_id":profileType,"email":email,"subscription":subscriptionPlan,"customer_id":customer_id,"user":sessionStorage.getItem("user_id")});
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 response = jQuery.parseJSON(response)
