@@ -40,7 +40,7 @@
 
     var profileMasterList = <%=session.getAttribute("profileMasterList") %>
     var subscriptionplans = <%=session.getAttribute("subscriptionplans") %>
-
+    var userProfile =[];
     var profile=0;
     var filterPhone="";
     var profileOwner=0;
@@ -49,6 +49,10 @@
     function  callEditAction (id){
 
         $.fn.loadActionDiv(id);
+    }
+    function  editAction (id){
+
+        $.fn.editUserDetails(id);
     }
 
 </script>
@@ -78,6 +82,7 @@
 
                     <!-- Bootstrap modals -->
                     <jsp:include page="userAddPopup.jsp"/>
+                    <jsp:include page="userEditPopup.jsp"/>
                     <jsp:include page="userFilterPopup.jsp"/>
                     <!--/ Bootstrap modals -->
                     <div class="card">
@@ -107,8 +112,9 @@
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Subscription Plan</th>
+                                    <th>Diet Plan</th>
                                     <th>Address</th>
-                                    <th>Added By</th>
+                                    <th>Added On</th>
 
                                     <th>Actions</th>
                                 </tr>

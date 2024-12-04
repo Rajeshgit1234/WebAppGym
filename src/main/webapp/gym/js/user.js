@@ -8,8 +8,10 @@ window.onload = function() {
 
 
         var profileType = $("#profileType");
+        var editProfileType = $("#editProfileType");
         var filterProfileType = $("#filterProfileType");
         var subscriptionPlan = $("#subscriptionPlan");
+        var editSubscriptionPlan = $("#editSubscriptionPlan");
 
 
         $.each(profileMasterList, function( index, value ) {
@@ -23,6 +25,8 @@ window.onload = function() {
 
                 profileType.append(
                     $("<option></option>").val(value.id).html(value.name)
+                );editProfileType.append(
+                    $("<option></option>").val(value.id).html(value.name)
                 );
                 filterProfileType.append(
                     $("<option></option>").val(value.id).html(value.name)
@@ -34,6 +38,9 @@ window.onload = function() {
 
 
             subscriptionPlan.append(
+                    $("<option></option>").val(value.subId).html(value.subName)
+                );
+            editSubscriptionPlan.append(
                     $("<option></option>").val(value.subId).html(value.subName)
                 );
 
@@ -70,18 +77,18 @@ window.onload = function() {
         //  $('#exptable').append('<tbody class="table-border-bottom-0"></tbody>')
         $(".pyClass").empty();
 
-
+        userProfile = [];
         if(userJson.status){
 
             if(userJson.profile.length!=0){
-
+                userProfile = userJson.profile;
                 $("#userTableDv").css("display", "block");
                 $.each( userJson.profile, function( key, value ) {
                     //2024-08-15 11:10:14.456078
                     var created_date = moment(value.addedOn).format('YYYY-MM-DD');
 
 
-                     $('#usertable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.phone + '</td><td>' + value.subscription + '</td><td>' + value.address + '</td><td>' + value.addedby + ' </td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                     $('#usertable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> <a id="editUserAction"  onclick="editAction('+key+')" style="text-decoration: underline;color: blue;cursor: grabbing;">'+ value.name + '</a></span></td><td>' + value.phone + '</td><td>' + value.subscription + '</td><td>' + value.dietname + '</td><td>' + value.address + '</td><td>' + created_date + ' </td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
                 });
             } else {
@@ -202,6 +209,89 @@ window.onload = function() {
 
     });
 
+    $.fn.editUserDetails =function (id){
+
+        $('#userEditModal').modal('show');
+        $('#editName').val(userProfile[id].name);
+        $('#editId').val(userProfile[id].id);
+        $('#editProfileType').val(userProfile[id].profile);
+        $('#editAddress').val(userProfile[id].address);
+        $('#editPhone').val(userProfile[id].phone);
+        $('#editEmail').val(userProfile[id].email);
+        $('#editSubscriptionPlan').val(userProfile[id].subscriptionId);
+        if(userProfile[id].dietplan>0){
+
+            $("#editDietPlan").prop('checked', true);
+
+
+        }
+
+
+    };
+
+
+    $("#editUserBtn").click(function() {
+
+
+        var name =  $('#editName').val();
+        var profileType =  $('#editProfileType').val();
+       // var username =  $('#username').val();
+        var address =  $('#editAddress').val();
+        var phone =  $('#editPhone').val();
+        var email =  $('#editEmail').val();
+        var subscriptionPlan =  $('#editSubscriptionPlan').val();
+        var dietPlan = 0;
+
+        if($("#dietPlan").prop('checked') == true){
+            //do something
+             dietPlan = 1;
+        }
+
+        var username ="";
+
+        if(name && profileType!=0  && address && phone && email) {
+
+
+            var url = baseUrl+"/addNewGymUser"
+
+            var settings = $.fn.commonajaxCall(url,{"gym_id":sessionStorage.getItem("gym_id"),"name":name,"username":username,"dietPlan":dietPlan,"password":"","address":address,"profile_id":profileType,"phone":phone,"email":email,"subscription":subscriptionPlan,"user":sessionStorage.getItem("user_id")});
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                response = jQuery.parseJSON(response)
+                if(response.status) {
+                    $("#alertDiv").html(response.statusDesc)
+                    $("#alertDiv").addClass('alert alert-success');
+                    $("#alertDiv").css("display", "block");
+                    setTimeout(
+                        function () {
+                            $("#alertDiv").css("display", "none");
+                            $("#userEditModal").modal('hide');
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+                        }, 2000);
+
+                    $.fn.loadUserData();
+                }else{
+
+                    $("#alertDiv").html(response.statusDesc)
+                    $("#alertDiv").addClass('alert alert-success');
+                    $("#alertDiv").css("display", "block");
+                    setTimeout(
+                        function () {
+                            $("#alertDiv").css("display", "none");
+
+                        }, 2000);
+                }
+            });
+
+
+
+        }else {
+            alert("Please enter all details");
+        }
+
+    });
+
     $("#usernameavailability").click(function() {
 
 
@@ -237,22 +327,26 @@ window.onload = function() {
 
     $.fn.loadActionDiv =function (id){
 
+        //$('#userEditModal').modal('show');
+
         editKey = -1;
-        var div = "editAction_"+id;
+         var div = "editAction_"+id;
 
-        if(!$("#editAction_"+id).is(':visible'))
-        {
+         if(!$("#editAction_"+id).is(':visible'))
+         {
 
 
-            $(".dropdown-menu").css("display", "none");
-            $("#editAction_"+id).css("display", "block");
-        }else{
-            $("#editAction_"+id).css("display", "none");
-        }
+             $(".dropdown-menu").css("display", "none");
+             $("#editAction_"+id).css("display", "block");
+         }else{
+             $("#editAction_"+id).css("display", "none");
+         }
 
 
 
     };
+
+
 
 
     $.fn.loadNextSet =function (){
