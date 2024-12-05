@@ -22,7 +22,6 @@
     <%--<script type="text/javascript" src="/WebAppGym/gym/js/scripts.js"></script>
     <script type="text/javascript" src="/WebAppGym/gym/js/apexcharts.js"></script>--%>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="stylesheet" href="/WebAppGym/gym/css/styles.css" />
     <script type="text/javascript" src="/WebAppGym/gym/js/home.js"></script>
 
@@ -121,7 +120,7 @@
                             <div class="container-fluid">
 
                                 <div class="main">
-                                    <div class="row sparkboxes mt-4 mb-4">
+                                    <div class="row sparkboxes mt-4 mb-4" style="display: none">
                                         <div class="col-md-4">
                                             <div class="box box1">
                                                 <div id="expspark"></div>

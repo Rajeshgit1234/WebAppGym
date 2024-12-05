@@ -27,41 +27,7 @@ window.onload = function() {
 
         })
 
-       /* var url = baseUrl+"/loadExpSpark"
 
-        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id")});
-        $.ajax(settings).done(function (response) {
-            response= jQuery.parseJSON(response)
-            $.fn.closeLoader();
-
-            if(response.status){
-
-                piechartoptionslabels = [];
-                piechartoptionsvalues = [];
-
-                $.each( response.expData, function( key, value ) {
-                    //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
-
-                    piechartoptionslabels.push(value.expItem);
-                    piechartoptionsvalues.push(value.amount);
-
-
-                });
-
-                piechart.updateSeries([{
-                    series: piechartoptionsvalues
-                }])
-                /!*piechart.updateOptions([{
-                    name: 'piechartseries',
-                    data: piechartoptionsvalues
-                }]);*!/
-
-
-
-            }
-
-        });
-*/
 
 
         var piechartoptions ={
@@ -88,13 +54,45 @@ window.onload = function() {
         };
 
 
+        var areachartOptions = {
+            chart: {
+                height: 280,
+                type: "area"
+            },
+            dataLabels: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: "Series 1",
+                    data: payoptionsData
+                }
+            ],
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.7,
+                    opacityTo: 0.9,
+                    stops: [0, 90, 100]
+                }
+            },
+            xaxis: {
+                categories: payoptionsDataLabel
+            }
+        };
 
 
         // Create the chart
-        var piechart = new ApexCharts(document.querySelector("#piechart"), piechartoptions);
+       var piechart = new ApexCharts(document.querySelector("#piechart"), piechartoptions);
 
         // Render the chart
-        piechart.render();
+       piechart.render();
+
+        var areachart = new ApexCharts(document.querySelector("#areachart"), areachartOptions);
+
+        areachart.render();
+
 
         var expoptionsData = [47, 45, 54];
 
