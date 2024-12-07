@@ -2,7 +2,7 @@
 var weburl ="http://43.204.230.101:8080/WebAppGym/";*/
 var baseUrl ="http://localhost:8763";
 var weburl ="http://localhost:8080/WebAppGym/";
-
+;
 
 $(document).ready(function(){
 
@@ -23,6 +23,35 @@ $(document).ready(function(){
             "data": JSON.stringify(data)
         };
     return settings;
+
+    }
+
+    $.fn.loadNot = function(url,data){
+
+
+        var url = baseUrl+"/loadNotifications"
+        var settings = {
+            "url": url,
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Access-Control-Allow-Origin":"*",
+                "Content-Type": "application/json"
+
+            },
+            "data": JSON.stringify({ "gym_id": sessionStorage.getItem("gym_id")})
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+           var  responseJson = jQuery.parseJSON(response)
+            $("#notLabel").text(responseJson.notification_count);
+            sessionStorage.setItem('notification', response)
+
+
+
+        });
 
     }
 
