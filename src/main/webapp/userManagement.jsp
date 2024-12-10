@@ -45,6 +45,7 @@
     var filterPhone="";
     var profileOwner=0;
     var offset =0;
+    var custId =0;
 
     function  callEditAction (id){
 

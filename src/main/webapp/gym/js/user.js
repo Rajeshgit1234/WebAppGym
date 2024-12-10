@@ -211,7 +211,13 @@ window.onload = function() {
 
     $.fn.editUserDetails =function (id){
 
+        custId = id;
         $('#userEditModal').modal('show');
+        $("#paymentsTab").css("display", "none");
+        $("#attTab").css("display", "none");
+        $("#profileTab").css("display", "block");
+
+
         $('#editName').val(userProfile[id].name);
         $('#editId').val(userProfile[id].id);
         $('#editProfileType').val(userProfile[id].profile);
@@ -229,6 +235,107 @@ window.onload = function() {
 
     };
 
+
+
+    $("#payTab").click(function() {
+
+
+        $("#paymentsTabLoader").css("display", "block");
+        $(".pyClassPay").empty();
+        var url = baseUrl+"/loadCustomerPaymentsFilter"
+        var settings = {
+            "url": url,
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Access-Control-Allow-Origin":"*",
+                "Content-Type": "application/json"
+
+            },
+            "data": JSON.stringify({ "gym_id": sessionStorage.getItem("gym_id"),"offset":"0" ,"year":new Date().getFullYear() ,"month":"1","customer":userProfile[custId].id})
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+            var  responseJson = jQuery.parseJSON(response)
+            $("#paymentsTabLoader").css("display", "none");
+            $("#noDataLabel").css("display", "none");
+            $("#payTable").css("display", "none");
+
+            if(responseJson.status){
+
+               $("#payTableDv").css("display", "block");
+               $.each( responseJson.payList, function( key, value ) {
+                   //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
+                   var created_date = moment(value.createdon).format('DD-MM-YYYY');
+                   var monthPay = "";
+                   switch (value.paymonth) {
+
+                       case 1:
+                           monthPay = "January " + (value.payyear);
+                           break;
+                       case 2:
+                           monthPay = "February " + (value.payyear);
+                           break;
+                       case 3:
+                           monthPay = "March " + (value.payyear);
+                           break;
+                       case 4:
+                           monthPay = "April " + (value.payyear);
+                           break;
+                       case 5:
+                           monthPay = "May " + (value.payyear);
+                           break;
+                       case 6:
+                           monthPay = "June " + (value.payyear);
+                           break;
+                       case 7:
+                           monthPay = "July " + (value.payyear);
+                           break;
+                       case 8:
+                           monthPay = "August " + (value.payyear);
+                           break;
+                       case 9:
+                           monthPay = "September " + (value.payyear);
+                           break;
+                       case 10:
+                           monthPay = "October " + (value.payyear);
+                           break;
+                       case 11:
+                           monthPay = "November " + (value.payyear);
+                           break;
+                       case 12:
+                           monthPay = "December " + (value.payyear);
+                           break;
+
+                   }
+
+                   // $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">' + value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                   //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                   //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="editPay('+key+')"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.exp_id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                   $('#payTable').append('<tr class="pyClassPay"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + value.strDate + '</td><td>' + value.toDate + '</td><td>' + value.description + '</td><td>' + created_date + '</td></tr>')
+                   $("#payTable").css("display", "block");
+
+               });
+           }else{
+               $("#payTableDv").css("display", "none");
+                $("#noDataLabel").css("display", "block");
+
+           }
+
+
+
+        });
+
+
+    });$("#atTab").click(function() {
+
+
+        $("#attTabLoader").css("display", "block");
+
+
+    });
 
     $("#editUserBtn").click(function() {
 

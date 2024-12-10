@@ -85,6 +85,18 @@ public class MarkPayment extends HttpServlet {
             HttpSession ses = request.getSession(true);
             ses.setAttribute("customers", customers);
 
+            JSONObject subscriptions = Common.loadSubscriptions(Integer.valueOf(gymid));
+            if(subscriptions.getBoolean("status")) {
+
+
+
+                JSONArray subscriptionPlans = subscriptions.getJSONArray("subscriptionPlans");
+                ses.setAttribute("subscriptionplans", subscriptionPlans);
+
+
+
+
+            }
 
         }catch (Exception e){
             e.printStackTrace();

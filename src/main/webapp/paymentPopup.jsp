@@ -55,7 +55,7 @@
                             </div>--%>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label class="form-label" for="payDate">Date</label>
+                                    <label class="form-label" for="payDate">Payment from Date</label>
                                     <div class="input-group input-group-merge">
                                             <span id="basic-icon-default-fullname2" class="input-group-text"
                                             ><i class="fa fa-calendar fa-lg"></i
@@ -91,7 +91,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="mb-3" >
+                                <div class="mb-3" style="display: none" >
                                     <label class="form-label" for="usersList">Payment collecting for month(s) </label>
                                     <div class="input-group input-group-merge">
 
@@ -186,6 +186,26 @@
                                         <input
                                                 type="text"
                                                 id="payAmount"
+                                                readonly
+                                                class="form-control"
+                                                placeholder="Amount"
+                                                aria-label="Amount"
+                                                aria-describedby="basic-icon-default-email2" />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="discountAdded"  />
+                                        <label class="form-check-label" for="discountAdded"> Discount  </label>
+                                    </div>
+                                </div>
+                                <div class="mb-3" id="finalAmtDiv">
+                                    <label class="form-label" for="payAmount">Amount after discount</label>
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-rupee"></i></span>
+                                        <input
+                                                type="text"
+                                                id="finalamount"
                                                 class="form-control"
                                                 placeholder="Amount"
                                                 aria-label="Amount"

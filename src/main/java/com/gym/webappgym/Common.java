@@ -73,8 +73,8 @@ public class Common {
         JSONObject reqObj = new JSONObject();
         try{
 
-            reqObj.put("gym_id",gymid);
-            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/fetchSubscriptionPlans")
+            reqObj.put("gym",gymid);
+            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/fetchSubscriptionPlansFull")
                     .header("Content-Type", "application/json")
                     //.body("{\"username\":\"test\",\"password\":\"test\"}")
                     .body(reqObj.toString())

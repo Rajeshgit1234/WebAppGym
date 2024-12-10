@@ -9,8 +9,23 @@ window.onload = function() {
 
             $.fn.loadExpenseData(resp);
         }*/
+        $("#finalAmtDiv").css("display", "none");
+
+        $('#discountAdded').change(function() {
+
+            if($("#discountAdded").prop('checked') == true){
+                //do something
+                discountAdded =1;
+                $("#finalAmtDiv").css("display", "block");
+
+            }else{
+                discountAdded =0;
+                $("#finalAmtDiv").css("display", "none");
+
+            }
 
 
+        });
 
         document.getElementById("payDate").valueAsDate = new Date();
 
@@ -28,6 +43,10 @@ window.onload = function() {
 
         $('#payDate').attr('max', $.fn.getMaxDate());
 
+        subAmountList[0] = 0;
+        subList[0] = 0;
+        custList[0] = 0;
+
         $.each(profile, function( index, value ) {
 
             usersList.append(
@@ -35,8 +54,10 @@ window.onload = function() {
             );usersListFilter.append(
                 $("<option></option>").val(value.id).html(value.name +" ( "+ value.phone+" ) ")
             );
+            custList[value.id] = value;
+
         })
-        subAmountList[0] = 0;
+
 
         $.each(subscriptionplans, function( index, value ) {
 
@@ -45,6 +66,7 @@ window.onload = function() {
             );
 
             subAmountList[value.subId] = value.subAmount;
+            subList[value.subId] = value;
         })
 
 
@@ -55,6 +77,14 @@ window.onload = function() {
     });
 
 
+    $('#usersList').on('change', function() {
+        var userid = $(this).val();
+        var subId = custList[userid];
+        $("#paySub").val(subId.subscription);
+        var amnt = subAmountList[subId.subscription];
+        if(( amnt))
+            $('#payAmount').val(amnt);
+    });
 
     $.fn.loadPayData = function(){
 
@@ -133,11 +163,11 @@ window.onload = function() {
                    // $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">' + value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
                     //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
                     //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="editPay('+key+')"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.exp_id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
-                    $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                    $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + value.strDate + '</td><td>' + value.toDate + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
 
                 });
             } else {
-                $("#payTableDv").css("display", "block");
+                $("#payTableDv").css("display", "none");
 
             }
 
@@ -165,45 +195,26 @@ window.onload = function() {
         var usersList =  $('#usersList').val();
         var payDesc =  $('#payDesc').val();
         var payAmount =  $('#payAmount').val();
-        var fromMonth =  $('#fromMonth').val();
-        var fromYear =  $('#fromYear').val();
-        var toYear =  $('#toYear').val();
+        var finalamount =  $('#finalamount').val();
+        if(discountAdded==0)finalamount =payAmount;
         var paySub =  $('#paySub').val();
-        var toMonth =  $('#toMonth').val();
-        var status = false;
-        if(payDate && usersList!=0 && paySub!=0 && payDesc && payAmount!=0 && fromMonth!=0 && toMonth!=0 && toYear!=0 && fromYear!=0){
+        var duration =  subList[paySub].duration;
 
+        if(discountAdded==1){
 
-            if(fromYear==toYear){
+            if(finalamount){
 
-                if(fromMonth<toMonth || fromMonth==toMonth){
+            }else {
 
-                    status = true;
-
-                }else{
-
-                    status = false;
-                    alert("Selected month is incorrect")
-                }
-            }else{
-
-                tatus = true;
+                alert("Please enter final amount after discount");
+                return false;
             }
-
-
-
-
-
-        }else{
-
-            alert("Please enter details")
         }
-
-        if(status){
+        if(payDate && usersList!=0 && paySub!=0 && payDesc && payAmount!=0 ){
 
             $.fn.openLoader();
-            var url = baseUrl+"/markCustomerPayments"
-            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"addedby": sessionStorage.getItem("user_id"),"customer":usersList,"amount":payAmount,"description":payDesc,"subscription":paySub,"fromMonth":fromMonth,"toMonth":toMonth,"fromYear":fromYear,"toYear":toYear});
+            var url = baseUrl+"/markCustomerPaymentsV2"
+            var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"addedby": sessionStorage.getItem("user_id"),"customer":usersList,"amount":payAmount,"description":payDesc,"subscription":paySub,"fromdate":payDate,"duration":duration,"finalamount":finalamount});
             $.ajax(settings).done(function (resp) {
 
                 console.log(resp);
@@ -216,36 +227,86 @@ window.onload = function() {
                 if(response.status){
 
                     alert(response.statusDesc)
-                    // $.fn.showAlertSuccess(response.statusDesc);
-                    /*$("#alertDiv").html(response.statusDesc)
-                    $("#alertDiv").addClass('alert alert-success');
-                    $("#alertDiv").css("display", "block");
-                    setTimeout(
-                        function()
-                        {
-                            $("#alertDiv").css("display", "none");
-                        }, 5000);*/
+
 
                 }else{
                     alert(response.statusDesc)
-                    // $.fn.showAlertFail(response.statusDesc);
-                    /* $("#alertDiv").html(response.statusDesc)
-                     $("#alertDiv").addClass('alert alert-danger');
 
-                     $("#alertDiv").css("display", "block");
-                     setTimeout(
-                         function()
-                         {
-                             $("#alertDiv").css("display", "none");
-                         }, 5000);*/
 
                 }
 
 
                 $.fn.loadPayData();
             });
+        }else{
 
+            alert("Please enter details")
         }
+
+
+            /* var fromMonth =  $('#fromMonth').val();
+             var fromYear =  $('#fromYear').val();
+             var toYear =  $('#toYear').val();
+             var toMonth =  $('#toMonth').val();
+             var status = false;
+             if(payDate && usersList!=0 && paySub!=0 && payDesc && payAmount!=0 && fromMonth!=0 && toMonth!=0 && toYear!=0 && fromYear!=0){
+
+
+                 if(fromYear==toYear){
+
+                     if(fromMonth<toMonth || fromMonth==toMonth){
+
+                         status = true;
+
+                     }else{
+
+                         status = false;
+                         alert("Selected month is incorrect")
+                     }
+                 }else{
+
+                     tatus = true;
+                 }
+
+
+
+
+
+             }else{
+
+                 alert("Please enter details")
+             }
+
+             if(status){
+
+                 $.fn.openLoader();
+                 var url = baseUrl+"/markCustomerPayments"
+                 var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id"),"addedby": sessionStorage.getItem("user_id"),"customer":usersList,"amount":payAmount,"description":payDesc,"subscription":paySub,"fromMonth":fromMonth,"toMonth":toMonth,"fromYear":fromYear,"toYear":toYear});
+                 $.ajax(settings).done(function (resp) {
+
+                     console.log(resp);
+                     var response = jQuery.parseJSON(resp)
+                     $.fn.closeLoader();
+                     $("#payModel").modal('hide');
+                     $('body').removeClass('modal-open');
+                     $('.modal-backdrop').remove();
+
+                     if(response.status){
+
+                         alert(response.statusDesc)
+
+
+                     }else{
+                         alert(response.statusDesc)
+
+
+                     }
+
+
+                     $.fn.loadPayData();
+                 });
+
+             }*/
     });
 
     $("#filterBtn").click(function() {
@@ -255,7 +316,7 @@ window.onload = function() {
         var filYear =  $('#filterYear').val();
         var filMonth =  $('#filterMonth').val();
 
-        if(filYear!=0) {
+        if(filYear!=0 && filMonth!=0) {
             filteryear = filYear;
             filterMonth = filMonth;
             customer = usersListFilter;
@@ -269,7 +330,7 @@ window.onload = function() {
             $.fn.loadPayData();
 
         }else {
-            alert("year is mandatory");
+            alert("year and month is mandatory");
         }
 
     });

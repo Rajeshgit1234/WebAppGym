@@ -36,8 +36,11 @@
     var profile = <%=session.getAttribute("customers") %>
     var subscriptionplans = <%=session.getAttribute("subscriptionplans") %>
     var subAmountList =  {};
+    var subList =  {};
+    var custList =  {};
 
     var customer = 0;
+    var discountAdded = 0;
    var filteryear = 0;
     var filterMonth = 0;
 
@@ -115,7 +118,8 @@
                                 <tr>
                                     <th>Customer</th>
                                     <th>Amount</th>
-                                    <th>Month </th>
+                                    <th>From </th>
+                                    <th>To </th>
                                     <th>Subscription</th>
                                     <th>description</th>
                                     <th>Paid On </th>
