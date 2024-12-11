@@ -117,12 +117,13 @@
                                 <thead>
                                 <tr>
                                     <th>Customer</th>
-                                    <th>Amount</th>
+                                    <th>Amount(After discount)</th>
+                                    <th>Discount Added</th>
                                     <th>From </th>
                                     <th>To </th>
                                     <th>Subscription</th>
                                     <th>description</th>
-                                    <th>Paid On </th>
+                                    <th>Paid On </th> <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>

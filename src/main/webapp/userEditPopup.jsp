@@ -219,9 +219,9 @@
                                                         <th>Amount</th>
                                                         <th>From </th>
                                                         <th>To </th>
-
                                                         <th>description</th>
                                                         <th>Paid On </th>
+                                                        <th>Status </th>
 
                                                     </tr>
                                                     </thead>
