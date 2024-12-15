@@ -191,13 +191,140 @@ window.onload = function() {
         }
         new ApexCharts(document.querySelector("#payspark"), payoptions).render();
 
+       /* var attOptions = {
+            series: [{
+                name: "Desktops",
+                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Product Trends by Month',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+            }
+        };
 
 
+        var chart = new ApexCharts(document.querySelector("#attendencechart"), attOptions);
+        chart.render();*/
 
+        $.fn.loadAttData();
 
     });
 
+    $.fn.loadAttData = function(expJson){
 
+        var url = baseUrl+"/viewFullAttendanceMonth"
+
+        var settings = $.fn.commonajaxCall(url,{ "gym_id": sessionStorage.getItem("gym_id")});
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            $.fn.closeLoader();
+
+            $.fn.renderAttData(jQuery.parseJSON(response));
+        });
+
+
+    }
+
+    $.fn.renderAttData = function(attJson){
+
+
+
+
+        var doyAtt =[];
+        var xaxisData =[];
+        var xaxisDataDOY =[];
+        var doyAttCount =[];
+        if(attJson.status){
+
+           var attendance = attJson.attendance;
+           var doyJsonEle = attJson.doyJson;
+           for(var i=0;attendance.length>i;i++){
+
+               doyAtt[i]=attendance[i].doy;
+               doyAttCount[i]=attendance[i].count;
+
+           }
+           for(var k=0;doyJsonEle.length>k;k++){
+
+               xaxisData[k]=doyJsonEle[k].date;
+               xaxisDataDOY[k]=doyJsonEle[k].doy;
+
+           }
+        }
+
+        var seriesData  =[];
+        for(var j=0;xaxisData.length>j;j++){
+
+            var dateObj = xaxisDataDOY[j];
+            if (doyAtt.indexOf(dateObj) !== -1) {
+
+                seriesData[j]= doyAttCount[doyAtt.indexOf(dateObj)];
+            }else{
+                seriesData[j]=0;
+            }
+
+        }
+
+        var attOptions = {
+            series: [{
+                name: "Count",
+                data: seriesData
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Attendance count of last 15 days',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: xaxisData,
+            }
+        };
+
+
+        var chart = new ApexCharts(document.querySelector("#attendencechart"), attOptions);
+        chart.render();
+
+    }
 
 
 

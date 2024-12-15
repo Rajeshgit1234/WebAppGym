@@ -36,6 +36,9 @@
 
         font-size: medium !important;
     }
+    .apexcharts-toolbar{
+        display: none !important;
+    }
 </style>
 <script>
     var expenseMasterList = <%=session.getAttribute("expenseMasterList") %>
@@ -140,7 +143,7 @@
 
                                     <div class="row mt-5 mb-4">
                                         <div class="col-md-6">
-                                            <div class="box">
+                                            <div class="box" style="height: 100%">
                                                 <div id="piechart"></div>
                                             </div>
                                         </div>
@@ -150,6 +153,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div> <div id="attendencechart"></div> </div>
 
                                     <%--<div class="row mt-4 mb-4">
                                         <div class="col-md-6">
