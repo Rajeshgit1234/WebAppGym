@@ -53,7 +53,7 @@ public class MapDiet extends HomeServlet{
 
             JSONObject reqObj = new JSONObject();
             reqObj.put("gym_id",Integer.valueOf(gymid));
-            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/loadGymCustomersPTFull")
+            HttpResponse<String> loginResponse = Unirest.post(Common.baseUrl+"/loadGymCustomersNotAddedDiet")
                     .header("Content-Type", "application/json")
                     //.body("{\"username\":\"test\",\"password\":\"test\"}")
                     .body(reqObj.toString())

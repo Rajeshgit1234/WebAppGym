@@ -25,12 +25,28 @@ window.onload = function() {
             }
 
 
+        }); $('#discountEditAdded').change(function() {
+
+            if($("#discountEditAdded").prop('checked') == true){
+                //do something
+                discountEditAdded =1;
+                $("#finalEditAmtDiv").css("display", "block");
+
+            }else{
+                discountEditAdded =0;
+                $("#finalEditAmtDiv").css("display", "none");
+
+            }
+
+
         });
 
         document.getElementById("payDate").valueAsDate = new Date();
 
         var usersList = $("#usersList");
+        var usersEditList = $("#usersEditList");
         var paySub = $("#paySub");
+        var payEditSub = $("#payEditSub");
         var usersListFilter = $("#usersListFilter");
 
 
@@ -53,6 +69,8 @@ window.onload = function() {
                 $("<option></option>").val(value.id).html(value.name +" ( "+ value.phone+" ) ")
             );usersListFilter.append(
                 $("<option></option>").val(value.id).html(value.name +" ( "+ value.phone+" ) ")
+            );usersEditList.append(
+                $("<option></option>").val(value.id).html(value.name +" ( "+ value.phone+" ) ")
             );
             custList[value.id] = value;
 
@@ -62,6 +80,8 @@ window.onload = function() {
         $.each(subscriptionplans, function( index, value ) {
 
             paySub.append(
+                $("<option></option>").val(value.subId).html(value.subName )
+            ); payEditSub.append(
                 $("<option></option>").val(value.subId).html(value.subName )
             );
 
@@ -117,7 +137,10 @@ window.onload = function() {
                 $("#payTableDv").css("display", "block");
                 $.each( expJson.payList, function( key, value ) {
                     //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
-                    var created_date = moment(value.createdon).format('DD-MM-YYYY');
+                    var created_date = moment(value.createdon).format('MMMM Do YYYY');
+                    var startDate = moment(value.strDate).format('MMMM Do YYYY');
+                    var endDate = moment(value.toDate).format('MMMM Do YYYY');
+
                     var monthPay = "";
                     switch (value.paymonth) {
 
@@ -167,7 +190,13 @@ window.onload = function() {
                    // $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">' + value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
                     //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
                     //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="editPay('+key+')"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.exp_id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
-                    $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.finalamount + '</td><td>' + discount + '</td><td>' + value.strDate + '</td><td>' + value.toDate + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td>' + value.expired + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                   if(value.expired  && value.expired =="Active"){
+                       $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> <a id="editUserAction"  onclick="callShowPaymentDetails('+value.id+')" style="text-decoration: underline;color: blue;cursor: grabbing;">'+ value.name + '</a></span></td><td>' + value.finalamount + '</td><td>' + startDate + '</td><td>' + endDate + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><span class="badge bg-label-success me-1">' + value.expired + '</span></td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+
+                   }else{
+                       $('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> <a id="editUserAction"  onclick="callShowPaymentDetails('+value.id+')" style="text-decoration: underline;color: blue;cursor: grabbing;">'+ value.name + '</a></span></td><td>' + value.finalamount + '</td><td>' + startDate + '</td><td>' + endDate + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><span class="badge bg-label-danger me-1">' + value.expired + '</span></td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
+                   }
+
 
                 });
             } else {
@@ -190,6 +219,12 @@ window.onload = function() {
         var amnt = subAmountList[subId];
         if(( amnt))
             $('#payAmount').val(amnt);
+    });
+    $("#payEditSub").change(function() {
+        var subId = ( $('option:selected', this).val() );
+        var amnt = subAmountList[subId];
+        if(( amnt))
+            $('#payEditAmount').val(amnt);
     });
 
     $("#addPayBtn").click(function() {
@@ -312,6 +347,73 @@ window.onload = function() {
 
              }*/
     });
+$("#editPayBtn").click(function() {
+
+
+        var payDate =  $('#payEditDate').val();
+        var usersList =  $('#usersEditList').val();
+        var payDesc =  $('#payEditDesc').val();
+        var payAmount =  $('#payEditAmount').val();
+        var finalamount =  $('#finalEditamount').val();
+        var payExpired =  $('#payExpired').val();
+        if($("#discountEditAdded").prop('checked') == true){
+            discountEditAdded =1;
+        }
+        if(discountEditAdded==0)finalamount =payAmount;
+        var paySub =  $('#payEditSub').val();
+        var duration =  subList[paySub].duration;
+        var discount = false;
+        if(discountEditAdded==1){
+
+            if(finalamount){
+                discount = true
+            }else {
+
+                alert("Please enter final amount after discount");
+                return false;
+            }
+        }
+
+        if(payExpired!="Active"){
+
+            alert("This is already expired");
+            return false;
+        }
+        if(payDate && usersList!=0 && paySub!=0 && payDesc && payAmount!=0 ){
+
+            $.fn.openLoader();
+            var url = baseUrl+"/editGymPayments"
+            var settings = $.fn.commonajaxCall(url,{ "payment_id": paymentId,"amount":payAmount,"description":payDesc,"subscription":paySub,"fromdate":payDate,"duration":duration,"finalamount":finalamount,"discount":discount});
+            $.ajax(settings).done(function (resp) {
+
+                console.log(resp);
+                var response = jQuery.parseJSON(resp)
+                $.fn.closeLoader();
+                $("#payModel").modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+                if(response.status){
+
+                    alert(response.statusDesc)
+
+
+                }else{
+                    alert(response.statusDesc)
+
+
+                }
+
+
+                $.fn.loadPayData();
+            });
+        }else{
+
+            alert("Please enter details")
+        }
+
+
+    });
 
     $("#filterBtn").click(function() {
 
@@ -356,6 +458,45 @@ window.onload = function() {
         }
 
 
+
+    };
+
+    $.fn.showPaymentDetails =function (id){
+
+
+        try{
+
+            var url = baseUrl+"/loadCustomerPaymentsByid"
+            paymentId = id;
+            var settings = $.fn.commonajaxCall(url,{ "payment_id": paymentId});
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                $.fn.closeLoader();
+                response=jQuery.parseJSON(response);
+                $('#userEditModal').modal('show');
+                if(response.status){
+                    $('#payEditDate').val(response.payList.frompaydate);
+                    $('#usersEditList').val(response.payList.customer);
+                    $('#payEditSub').val(response.payList.subscription);
+                    $('#payEditDesc').val(response.payList.description);
+                    $('#payEditAmount').val(response.payList.amount);
+                    $('#finalEditamount').val(response.payList.finalamount);
+                    $('#payExpired').val(response.payList.expired);
+                    if(response.payList.discountadded){
+
+                        $("#discountEditAdded").prop('checked', true);
+
+
+                    }
+
+                }
+
+
+            });
+
+        }catch (e) {
+
+        }
 
     };
 

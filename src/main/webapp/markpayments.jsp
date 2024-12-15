@@ -38,9 +38,10 @@
     var subAmountList =  {};
     var subList =  {};
     var custList =  {};
-
+    var paymentId =0;
     var customer = 0;
     var discountAdded = 0;
+    var discountEditAdded = 0;
    var filteryear = 0;
     var filterMonth = 0;
 
@@ -48,6 +49,10 @@
     function  callEditAction (id){
 
         $.fn.loadActionDiv(id);
+    }
+    function  callShowPaymentDetails (id){
+
+        $.fn.showPaymentDetails(id);
     }
 
 
@@ -90,6 +95,7 @@
 
                     <!-- Bootstrap modals -->
                     <jsp:include page="paymentPopup.jsp"/>
+                    <jsp:include page="paymentEditPopup.jsp"/>
                     <jsp:include page="payFilterPopup.jsp"/>
                     <!--/ Bootstrap modals -->
                     <div class="card">
@@ -117,8 +123,7 @@
                                 <thead>
                                 <tr>
                                     <th>Customer</th>
-                                    <th>Amount(After discount)</th>
-                                    <th>Discount Added</th>
+                                    <th>Amount</th>
                                     <th>From </th>
                                     <th>To </th>
                                     <th>Subscription</th>

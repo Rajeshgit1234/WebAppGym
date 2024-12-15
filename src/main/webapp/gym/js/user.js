@@ -268,7 +268,10 @@ window.onload = function() {
                $("#payTableDv").css("display", "block");
                $.each( responseJson.payList, function( key, value ) {
                    //var created_date = $.format.date(value.created_on, "dd/MM/yyyy hh:mm")
-                   var created_date = moment(value.createdon).format('DD-MM-YYYY');
+                   var created_date = moment(value.createdon).format('MMMM Do YYYY');
+                   var startDate = moment(value.strDate).format('MMMM Do YYYY');
+                   var endDate = moment(value.toDate).format('MMMM Do YYYY');
+
                    var monthPay = "";
                    switch (value.paymonth) {
 
@@ -314,7 +317,7 @@ window.onload = function() {
                    // $('#payTable').append('<tr class="pyClass"> <td><span class="badge bg-label-primary me-1">' + value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
                    //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
                    //$('#payTable').append('<tr class="pyClass"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + monthPay + '</td><td>' + value.subscription + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td><div class="dropdown"><button type="button" class="btn p-0 dropdown-toggle hide-arrow"   onclick="callEditAction('+key+')"><i class="bx bx-dots-vertical-rounded"></i></button><div  id="editAction_'+key+'" class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0);" onclick="editPay('+key+')"><i class="bx bx-edit-alt me-1"></i> Edit</a><a class="dropdown-item" href="javascript:void(0);" onclick="delPay('+value.exp_id+')"><i class="bx bx-trash me-1"></i> Delete</a> </div></div></td></tr>')
-                   $('#payTable').append('<tr class="pyClassPay"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + value.strDate + '</td><td>' + value.toDate + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td>' + value.expired + '</td></tr>')
+                   $('#payTable').append('<tr class="pyClassPay"> <td><i className="bx bx-user"></i><span className="fw-medium"> '+ value.name + '</span></td><td>' + value.amount + '</td><td>' + startDate + '</td><td>' + endDate + '</td><td>' + value.description + '</td><td>' + created_date + '</td><td>' + value.expired + '</td></tr>')
                    $("#payTable").css("display", "block");
 
                });
@@ -334,6 +337,103 @@ window.onload = function() {
 
         $("#attTabLoader").css("display", "block");
 
+        var url = baseUrl+"/viewCustomerAttendanceMonth"
+        var settings = {
+            "url": url,
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Access-Control-Allow-Origin":"*",
+                "Content-Type": "application/json"
+
+            },
+            "data": JSON.stringify({ "gym_id": sessionStorage.getItem("gym_id"),"customer":userProfile[custId].id})
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            var  attJson = jQuery.parseJSON(response)
+
+            $("#attTabLoader").css("display", "none");
+
+            $("#attTable").empty();
+            if(attJson.status){
+
+                if(attJson.doyJson.length!=0 && attJson.custJson.length!=0){
+
+                    var doyLen = attJson.doyJson.length;
+
+
+                    var cal = 1;
+
+                    $("#attTable").append('<tr>');
+
+                    for(cal;attJson.doyJson.length>cal;cal++){
+
+                        if(cal<8){
+                            $("#attTable").append('<th>'+ attJson.doyJson[cal].date + '</th>');
+
+                        }
+                    }
+                    cal = 1;
+                    for(cal;attJson.doyJson.length>cal;cal++){
+
+                        if(cal<8){
+                            var rwid = attJson.doyJson[cal].doy+"_"+self.custid;
+
+                            $("#attRow").append(' <td><i id="att_'+ rwid + '" class="fa fa-times-circle text-danger" aria-hidden="true"></i></td>');
+
+
+                        }
+                    }
+                    $("#attTable").append('</tr>');
+                     cal = 8;
+                    $("#attTable").append('<tr>');
+
+                    for(cal;attJson.doyJson.length>cal;cal++){
+
+                        if(cal<15){
+                            $("#attTable").append('<th>'+ attJson.doyJson[cal].date + '</th>');
+
+                        }
+                    }
+                    $("#attTable").append('</tr>');
+                     cal = 15;
+                    $("#attTable").append('<tr>');
+
+                    for(cal;attJson.doyJson.length>cal;cal++){
+
+                        if(cal<23){
+                            $("#attTable").append('<th>'+ attJson.doyJson[cal].date + '</th>');
+
+                        }
+                    }
+                    $("#attTable").append('</tr>');
+
+                     cal = 23;
+                    $("#attTable").append('<tr>');
+
+                    for(cal;attJson.doyJson.length>cal;cal++){
+
+
+                            $("#attTable").append('<th>'+ attJson.doyJson[cal].date + '</th>');
+
+
+                    }
+                    $("#attTable").append('</tr>');
+
+
+
+
+
+                }
+
+            } else {
+
+            }
+
+
+        });
 
     });
 

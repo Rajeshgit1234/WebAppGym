@@ -2,9 +2,14 @@
 var weburl ="http://43.204.230.101:8080/WebAppGym/";*/
 var baseUrl ="http://localhost:8763";
 var weburl ="http://localhost:8080/WebAppGym/";
-;
+
 
 $(document).ready(function(){
+
+    if(sessionStorage.getItem("notificationCount")){
+
+        $("#notLabel").text(sessionStorage.getItem("notificationCount"));
+    }
 
 
     $.fn.commonajaxCall = function(url,data){
@@ -46,8 +51,11 @@ $(document).ready(function(){
             console.log(response);
 
            var  responseJson = jQuery.parseJSON(response)
-            $("#notLabel").text(responseJson.notification_count);
+            var count =0;
+            if(responseJson.notification_count){count=responseJson.notification_count}else{count=0;}
+            $("#notLabel").text(count);
             sessionStorage.setItem('notification', response)
+            sessionStorage.setItem('notificationCount', count)
 
 
 
