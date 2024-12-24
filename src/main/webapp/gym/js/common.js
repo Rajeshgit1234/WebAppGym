@@ -1,5 +1,5 @@
-/*var baseUrl ="http://43.204.230.101:8763";
-var weburl ="http://43.204.230.101:8080/WebAppGym/";*/
+/*var baseUrl ="http://15.207.20.251:8763";
+var weburl ="http://15.207.20.251:8080/WebAppGym/";*/
 var baseUrl ="http://localhost:8763";
 var weburl ="http://localhost:8080/WebAppGym/";
 
